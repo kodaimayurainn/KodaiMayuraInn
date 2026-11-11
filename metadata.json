@@ -1,0 +1,6 @@
+{
+  "name": "Mayura Inn — Boutique Hillside Resort",
+  "description": "Elevated escapes in the misty hills of Kodaikanal. Discover Mayura Inn's collection of boutique, design-led luxury suites and residences.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

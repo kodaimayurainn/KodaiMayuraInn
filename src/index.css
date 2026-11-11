@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --mi-bg: #F9F8F6;
+    --mi-earth: #4A443B;
+    --mi-earth-dark: #3D3830;
+    --mi-sage: #828578;
+    --mi-sage-hover: #6E7165;
+    --mi-badge: #B2ABA0;
+    --mi-ink: #171614;
+    --mi-muted: #5C5852;
+    --mi-border: #D9D6D0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--mi-bg);
+    color: var(--mi-ink);
+    font-family: 'Courier Prime', monospace;
+  }
+
+  body {
+    background-color: var(--mi-bg);
+    color: var(--mi-ink);
+    overflow-x: hidden;
+    margin: 0;
+  }
+}
+
+.font-display {
+  font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.font-courier {
+  font-family: 'Courier Prime', monospace;
+}
+
+/* Custom subtle scrollbars for drawers & carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
