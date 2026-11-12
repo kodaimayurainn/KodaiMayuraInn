@@ -15,7 +15,6 @@ export interface Hotel {
   coordinates: string;
   rooms: {
     name: string;
-    sizeSqm: number;
     maxGuests: number;
     rateEur: number;
     description: string;
@@ -64,26 +63,30 @@ export const HOTELS: Hotel[] = [
       'Perched in the tranquil hills of Kodaikanal, Kodai Mayura Inn offers a collection of luxury multi-bedroom suites and residences. Merging raw stone foundations, warm timber detailing, and open panoramic verandas, each space invites you into an unhurried rhythm of stillness, fresh mountain air, and natural serenity.',
     highlights: [
       'Panoramic hillside verandas overlooking lush valleys',
-      'Exclusive 2 Bedroom & 3 Bedroom luxury suites with central living halls',
+      'Exclusive 1 Bedroom, 2 Bedroom & 3 Bedroom family-friendly suites',
       'Minutes from Kodaikanal Lake, Pine Forest & Pillar Rocks',
-      'Artisanal dining, outdoor fire pits & dedicated concierge',
+      'Outdoor fire pits, tranquil gardens & scenic relaxation',
     ],
-    nightlyRateEur: 3500,
+    nightlyRateEur: 3000,
     coordinates: '10.2381° N, 77.4892° E',
     rooms: [
       {
+        name: 'Single Bedroom',
+        maxGuests: 2,
+        rateEur: 3000,
+        description: 'Thoughtfully designed private sanctuary featuring a king-size bed, scenic balcony overlooking misty valleys, and luxury en-suite bathroom.',
+      },
+      {
         name: '2 Bedroom with Hall Suite',
-        sizeSqm: 95,
         maxGuests: 4,
-        rateEur: 3500,
-        description: 'Thoughtfully curated luxury suite with two king bedrooms, central sunlit living hall, private balconies, and twin en-suite bathrooms.',
+        rateEur: 6000,
+        description: 'Thoughtfully curated for quiet luxury and family comfort. Features two spacious master bedrooms with king beds, central sunlit living hall, private balconies, and twin en-suite bathrooms.',
       },
       {
         name: '3 Bedroom with Hall Residence',
-        sizeSqm: 145,
         maxGuests: 6,
-        rateEur: 4500,
-        description: 'Our signature multi-bedroom haven offering three independent en-suite bedrooms, expansive dining and living hall, and wrap-around panoramic veranda.',
+        rateEur: 9000,
+        description: 'Our signature multi-bedroom haven offering generous space for families and groups. Three independent en-suite bedrooms accompany an expansive living hall and wrap-around panoramic veranda.',
       },
     ],
   },
@@ -106,7 +109,7 @@ export const OFFERS: Offer[] = [
     details: [
       'Minimum stay 3 nights',
       'Valid for 2 Bedroom and 3 Bedroom suites',
-      'Complimentary morning tea & artisan breakfast',
+      'Complimentary morning mountain views & nature guides',
       'Flexible reschedule up to 72 hours prior to arrival',
     ],
     promoCode: 'STAYLONGER15',
@@ -138,21 +141,21 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'review-rohit',
     quote:
-      '"Amazing stay! The rooms were spacious, clean, and well-equipped. The complimentary breakfast was a delight, and the staff was incredibly helpful. Highly recommended for a peaceful getaway!"',
+      '"Amazing stay! The rooms were spacious, clean, and well-equipped. The serene hillside ambience was a delight, and the staff was incredibly helpful. Highly recommended for a peaceful getaway!"',
     guestName: 'Rohit Kumar',
     location: 'Bengaluru',
   },
   {
     id: 'review-meera',
     quote:
-      '"Beautiful property with stunning views. The amenities were excellent, especially the cozy bed and fast Wi-Fi. Loved the balcony swing! Will definitely visit again Kodai Square Team."',
+      '"Beautiful property with stunning views. The amenities were excellent, especially the cozy bed and fast Wi-Fi. Loved the balcony swing! Will definitely visit again Kodai Mayura Inn team."',
     guestName: 'Meera Nair',
     location: 'Kochi',
   },
   {
     id: 'review-david',
     quote:
-      '"Great hospitality! Especially the host was. The rooms were luxurious, and the breakfast was delicious. The serene location added charm to our vacation. Truly a memorable experience!"',
+      '"Great hospitality! Especially the host was. The rooms were luxurious, and the stay was wonderful. The serene location added charm to our vacation. Truly a memorable experience!"',
     guestName: 'David Johnson',
     location: 'Chennai',
   },
@@ -226,7 +229,7 @@ export const DOLOMITES_SLIDES = [
     id: 'mayura-interior',
     image: '/assets/kodai/2 Bedroom with Hall.png',
     fallbackImage: '/assets/kodai/2 Bedroom with Hall.png',
-    caption: 'Fireside Lounge & Textured Curtains — Kodai Mayura Inn',
+    caption: 'Fireside Seating & Textured Curtains — Kodai Mayura Inn',
   },
   {
     id: 'mayura-exterior',
@@ -238,6 +241,6 @@ export const DOLOMITES_SLIDES = [
     id: 'mayura-cabana',
     image: '/assets/kodai/3 Bedroom with hall.png',
     fallbackImage: '/assets/kodai/3 Bedroom with hall.png',
-    caption: 'Sunlit Timber Lounge & Terrace — Kodai Mayura Inn',
+    caption: 'Sunlit Timber Seating & Terrace — Kodai Mayura Inn',
   },
 ];

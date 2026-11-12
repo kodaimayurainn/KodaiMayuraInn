@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Users, Maximize2, Check, Sparkles } from 'lucide-react';
-import { PinIcon } from './MayuraInnIcons';
+import { motion, AnimatePresence } from 'motion/react';
+import { Users, Check, Sparkles, X, ChevronRight } from 'lucide-react';
 
 export interface RoomSuite {
   id: string;
@@ -9,7 +8,6 @@ export interface RoomSuite {
   subtitle: string;
   image: string;
   badge: string;
-  sizeSqm: number;
   maxGuests: number;
   rateEur: number;
   description: string;
@@ -18,43 +16,60 @@ export interface RoomSuite {
 
 export const FEATURED_ROOMS: RoomSuite[] = [
   {
+    id: 'single-bedroom',
+    name: 'Single Bedroom',
+    subtitle: 'Cozy Hillside Haven · Mountain View Veranda',
+    image: '/assets/kodai/single bedroom.jpeg',
+    badge: 'COZY RETREAT',
+    maxGuests: 2,
+    rateEur: 3000,
+    description:
+      'Thoughtfully designed private sanctuary featuring a comfortable king-size bed, private scenic balcony overlooking misty valleys, bespoke timber furnishings, and a luxury en-suite bathroom.',
+    amenities: [
+      '1 Private King Bedroom',
+      'Private Scenic View Balcony',
+      'Luxury En-Suite Bathroom',
+      'Hand-Troweled Warm Plaster Accents',
+      'Artisanal Oak & Linen Furnishings',
+      'High-Speed Wi-Fi',
+    ],
+  },
+  {
     id: '2-bedroom-with-hall',
     name: '2 Bedroom with Hall',
-    subtitle: 'Luxury Sanctuary · Central Hall & Mountain Veranda',
+    subtitle: 'Family Sanctuary · Central Hall & Mountain Veranda',
     image: '/assets/kodai/2 Bedroom with Hall.png',
     badge: 'POPULAR SUITE',
-    sizeSqm: 95,
     maxGuests: 4,
-    rateEur: 3500,
+    rateEur: 6000,
     description:
-      'Thoughtfully curated for quiet luxury and relaxation. Features two spacious master bedrooms with king beds, an expansive central living hall for unwinding, private scenic balconies, hand-troweled warm plaster accents, and twin en-suite bathrooms.',
+      'Thoughtfully curated for quiet luxury and family relaxation. Features two spacious master bedrooms with king beds, an expansive central living hall for unwinding, private scenic balconies, hand-troweled warm plaster accents, and twin en-suite bathrooms.',
     amenities: [
       '2 Private King Bedrooms',
-      'Central Living & Lounge Hall',
+      'Central Living Hall',
       'Private Scenic View Balcony',
       '2 Luxury En-Suite Bathrooms',
       'Artisanal Oak & Linen Furnishings',
-      'Complimentary Artisan Breakfast',
+      'High-Speed Wi-Fi',
     ],
   },
   {
     id: '3-bedroom-with-hall',
     name: '3 Bedroom with Hall',
-    subtitle: 'Grand Residence · Expansive Hall & Panoramic Views',
+    subtitle: 'Grand Family Residence · Expansive Hall & Panoramic Views',
     image: '/assets/kodai/3 Bedroom with hall.png',
     badge: 'SIGNATURE RESIDENCE',
-    sizeSqm: 145,
     maxGuests: 6,
-    rateEur: 4500,
+    rateEur: 9000,
     description:
-      'Our signature multi-bedroom haven offering unparalleled privacy and space. Three generous bedrooms accompany a magnificent open-concept living and dining hall, wrap-around panoramic terrace, bespoke stone and timber craftsmanship, and dedicated guest concierge service.',
+      'Our signature multi-bedroom haven offering generous space for families and groups. Three independent en-suite bedrooms accompany an expansive living hall, wrap-around panoramic terrace, and bespoke stone and timber craftsmanship.',
     amenities: [
       '3 Independent En-Suite Bedrooms',
-      'Expansive Open Living & Dining Hall',
+      'Expansive Open Living Hall',
       'Wrap-Around Panoramic Veranda',
-      'Dedicated Relaxation Lounge',
-      'Private In-Room Bar & Espresso Bar',
-      'VIP Concierge & Arrival Service',
+      'Bespoke Stone & Timber Accents',
+      'Private Scenic Balconies',
+      'High-Speed Wi-Fi',
     ],
   },
 ];
@@ -68,18 +83,26 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
   onQuickBookRoom,
   onSelectRoomDetails,
 }) => {
-  const [selectedRoomIndex, setSelectedRoomIndex] = useState<number | null>(null);
+  const [modalRoom, setModalRoom] = useState<RoomSuite | null>(null);
+
+  const handleOpenDetails = (room: RoomSuite) => {
+    if (onSelectRoomDetails) {
+      onSelectRoomDetails(room);
+    } else {
+      setModalRoom(room);
+    }
+  };
 
   return (
     <section id="rooms-section" className="bg-[#F9F8F6] pt-16 md:pt-24 pb-20">
       {/* Intro Statement matching Kodai Mayura Inn Editorial Style */}
-      <div className="max-w-[1360px] mx-auto px-6 md:px-12 mb-16 md:mb-24">
+      <div className="max-w-[1360px] mx-auto px-6 md:px-12 mb-16 md:mb-20">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[820px] mx-auto md:ml-[12%]"
+          className="max-w-[820px] mx-auto md:ml-[8%]"
         >
           <div className="flex items-center gap-2 font-courier text-xs uppercase tracking-[0.2em] text-[#828578] mb-3">
             <Sparkles className="w-3.5 h-3.5" />
@@ -110,134 +133,222 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
               OUR ROOMS
             </h2>
             <p className="font-courier text-xs text-[#5C5852] mt-1.5 uppercase tracking-wider">
-              2 Signature Multi-Bedroom Layouts Available
+              3 Signature Room & Suite Layouts Available
             </p>
           </div>
           <div className="font-courier text-xs text-[#5C5852]">
-            Adults-Only Sanctuary · High-Speed Wi-Fi · In-Suite Dining
+            Family-Friendly Hillside Sanctuary · High-Speed Wi-Fi · Panoramic Views
           </div>
         </motion.div>
       </div>
 
-      {/* Rooms Showcase: 2 Featured Rooms with Staggered Scroll Reveal */}
+      {/* Rooms Showcase: Clean Cards with Details on Pop-Up */}
       <div className="max-w-[1360px] mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
-          {FEATURED_ROOMS.map((room, idx) => {
-            const isDetailsOpen = selectedRoomIndex === idx;
-            return (
-              <motion.article
-                key={room.id}
-                initial={{ opacity: 0, y: 45 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.85, delay: idx * 0.18, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white border border-[#DCD9D0] overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {FEATURED_ROOMS.map((room, idx) => (
+            <motion.article
+              key={room.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.75, delay: idx * 0.14, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white border border-[#DCD9D0] overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow duration-300 group"
+            >
+              {/* Room Image Container with Click to Open Pop-Up */}
+              <div
+                onClick={() => handleOpenDetails(room)}
+                className="relative aspect-[16/10] w-full overflow-hidden bg-[#2D2924] cursor-pointer"
               >
-                {/* Room Image Container */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#2D2924] group">
-                  <img
-                    src={room.image}
-                    alt={room.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4 bg-[#4A443B] text-white font-courier text-[11px] font-bold tracking-widest px-3 py-1 uppercase">
-                    {room.badge}
+                <img
+                  src={room.image}
+                  alt={room.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute top-4 left-4 bg-[#4A443B] text-white font-courier text-[11px] font-bold tracking-widest px-3 py-1 uppercase">
+                  {room.badge}
+                </div>
+                <div className="absolute bottom-4 right-4 bg-black/65 backdrop-blur-sm text-white font-display text-sm px-3 py-1 tracking-wider uppercase">
+                  ₹{room.rateEur.toLocaleString('en-IN')} / NIGHT
+                </div>
+              </div>
+
+              {/* Simplified Room Card Body */}
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  {/* Capacity Tag - NO AREA MENTIONED */}
+                  <div className="flex items-center gap-2 font-courier text-xs text-[#5C5852] mb-2.5">
+                    <Users className="w-3.5 h-3.5 text-[#828578]" />
+                    <span>Up to {room.maxGuests} Guests</span>
+                    <span>·</span>
+                    <span className="text-[#828578]">Family Friendly</span>
                   </div>
-                  <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white font-display text-sm px-3 py-1 tracking-wider uppercase">
-                    ₹{room.rateEur.toLocaleString('en-IN')} / NIGHT
+
+                  {/* Room Title */}
+                  <h3
+                    onClick={() => handleOpenDetails(room)}
+                    className="font-display text-[26px] sm:text-[28px] leading-tight uppercase tracking-[0.02em] text-[#171614] mb-2 cursor-pointer hover:text-[#828578] transition-colors"
+                  >
+                    {room.name}
+                  </h3>
+
+                  <div className="font-courier text-xs text-[#828578] uppercase tracking-wider mb-4">
+                    {room.subtitle}
                   </div>
                 </div>
 
-                {/* Room Content */}
-                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                {/* Booking CTA Bar */}
+                <div className="pt-5 border-t border-[#DCD9D0] flex flex-wrap items-center justify-between gap-3 mt-4">
                   <div>
-                    {/* Key Specs Pills */}
-                    <div className="flex flex-wrap items-center gap-3 font-courier text-xs text-[#5C5852] mb-3">
-                      <span className="flex items-center gap-1">
-                        <Maximize2 className="w-3.5 h-3.5 text-[#828578]" />
-                        {room.sizeSqm} m² / {Math.round(room.sizeSqm * 10.764)} sq ft
-                      </span>
-                      <span>·</span>
-                      <span className="flex items-center gap-1">
-                        <Users className="w-3.5 h-3.5 text-[#828578]" />
-                        Up to {room.maxGuests} Guests
-                      </span>
+                    <div className="font-courier text-[11px] text-[#5C5852] uppercase">
+                      Starting from
                     </div>
-
-                    {/* Room Title */}
-                    <h3 className="font-display text-[28px] sm:text-[34px] leading-tight uppercase tracking-[0.02em] text-[#171614] mb-2">
-                      {room.name}
-                    </h3>
-
-                    <div className="font-courier text-xs text-[#828578] mb-4 uppercase tracking-wider">
-                      {room.subtitle}
-                    </div>
-
-                    <p className="font-courier text-[13.5px] leading-[1.65] text-[#262421] mb-6">
-                      {room.description}
-                    </p>
-
-                    {/* Amenities List */}
-                    <div className="mb-6 pt-4 border-t border-[#EFECE6]">
-                      <div className="font-courier text-xs font-bold uppercase tracking-wider text-[#171614] mb-3">
-                        SUITE HIGHLIGHTS
-                      </div>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-courier text-xs text-[#4A443B]">
-                        {room.amenities.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <Check className="w-3.5 h-3.5 text-[#828578] shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="font-display text-2xl text-[#171614]">
+                      ₹{room.rateEur.toLocaleString('en-IN')}{' '}
+                      <span className="font-courier text-xs text-[#5C5852] font-normal">
+                        / night
+                      </span>
                     </div>
                   </div>
 
-                  {/* Booking CTA Bar */}
-                  <div className="pt-5 border-t border-[#DCD9D0] flex flex-wrap items-center justify-between gap-4">
-                    <div>
-                      <div className="font-courier text-[11px] text-[#5C5852] uppercase">
-                        Starting from
-                      </div>
-                      <div className="font-display text-2xl text-[#171614]">
-                        ₹{room.rateEur.toLocaleString('en-IN')}{' '}
-                        <span className="font-courier text-xs text-[#5C5852] font-normal">
-                          / night
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (onSelectRoomDetails) {
-                            onSelectRoomDetails(room);
-                          } else {
-                            setSelectedRoomIndex(isDetailsOpen ? null : idx);
-                          }
-                        }}
-                        className="px-4 py-2.5 border border-[#4A443B] text-[#4A443B] font-display text-sm uppercase tracking-wider hover:bg-[#4A443B] hover:text-white transition-colors cursor-pointer"
-                      >
-                        SPECIFICATIONS
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => onQuickBookRoom(room)}
-                        className="px-5 py-2.5 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-sm uppercase tracking-wider transition-colors cursor-pointer"
-                      >
-                        BOOK THIS ROOM
-                      </button>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handleOpenDetails(room)}
+                      className="px-3.5 py-2.5 border border-[#4A443B] text-[#4A443B] font-display text-xs uppercase tracking-wider hover:bg-[#4A443B] hover:text-white transition-colors cursor-pointer"
+                    >
+                      SPECIFICATIONS
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onQuickBookRoom(room)}
+                      className="px-4 py-2.5 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                    >
+                      BOOK THIS ROOM
+                    </button>
                   </div>
                 </div>
-              </motion.article>
-            );
-          })}
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
+
+      {/* Specifications & Room Details Pop-up Modal */}
+      <AnimatePresence>
+        {modalRoom && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${modalRoom.name} Specifications`}
+            onClick={() => setModalRoom(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#F9F8F6] border border-[#D3CFC7] max-w-[620px] w-full max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col"
+            >
+              {/* Modal Image Header */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#2D2924] shrink-0">
+                <img
+                  src={modalRoom.image}
+                  alt={modalRoom.name}
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => setModalRoom(null)}
+                  aria-label="Close modal"
+                  className="absolute top-4 right-4 p-2 bg-black/60 hover:bg-black text-white rounded-full transition-colors cursor-pointer z-10"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="absolute bottom-3 left-4 bg-[#4A443B] text-white font-courier text-[11px] font-bold tracking-widest px-3 py-1 uppercase">
+                  {modalRoom.badge}
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 sm:p-8 space-y-6">
+                <div>
+                  <div className="flex items-center gap-2 font-courier text-xs text-[#5C5852] mb-1.5">
+                    <Users className="w-3.5 h-3.5 text-[#828578]" />
+                    <span>Up to {modalRoom.maxGuests} Guests</span>
+                    <span>·</span>
+                    <span className="text-[#828578]">Family Friendly</span>
+                  </div>
+                  <h3 className="font-display text-[30px] sm:text-[34px] uppercase tracking-wide text-[#171614] leading-tight">
+                    {modalRoom.name}
+                  </h3>
+                  <div className="font-courier text-xs text-[#828578] uppercase tracking-wider mt-1">
+                    {modalRoom.subtitle}
+                  </div>
+                </div>
+
+                <p className="font-courier text-[14px] leading-relaxed text-[#262421]">
+                  {modalRoom.description}
+                </p>
+
+                {/* Highlights */}
+                <div className="pt-4 border-t border-[#E5E2DC]">
+                  <div className="font-courier text-xs font-bold uppercase tracking-wider text-[#171614] mb-3">
+                    SUITE HIGHLIGHTS
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-courier text-xs text-[#4A443B]">
+                    {modalRoom.amenities.map((item, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#828578] shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Pricing & CTA */}
+                <div className="pt-5 border-t border-[#E5E2DC] flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <div className="font-courier text-[11px] text-[#5C5852] uppercase">
+                      Starting from
+                    </div>
+                    <div className="font-display text-3xl text-[#171614]">
+                      ₹{modalRoom.rateEur.toLocaleString('en-IN')}{' '}
+                      <span className="font-courier text-xs text-[#5C5852] font-normal">
+                        / night
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setModalRoom(null)}
+                      className="px-5 py-2.5 border border-[#4A443B] text-[#4A443B] font-display text-sm uppercase tracking-wider hover:bg-[#4A443B] hover:text-white transition-colors cursor-pointer"
+                    >
+                      CLOSE
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const target = modalRoom;
+                        setModalRoom(null);
+                        onQuickBookRoom(target);
+                      }}
+                      className="px-6 py-2.5 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-sm uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5"
+                    >
+                      <span>BOOK THIS ROOM</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
-

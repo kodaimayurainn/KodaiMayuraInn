@@ -54,29 +54,29 @@ test('calculatePriceQuote applies Stay Longer + Save 15% and Kodai Mayura Inn 10
   const mayuraInn = HOTELS.find((h) => h.id === 'mayura-inn')!;
   const quote = calculatePriceQuote(
     mayuraInn,
-    3500,
+    6000,
     '2027-05-01',
     '2027-05-05',
     1,
     'STAYLONGER15'
   );
   assert.equal(quote.nights, 4);
-  assert.equal(quote.subtotal, 14000);
+  assert.equal(quote.subtotal, 24000);
   assert.equal(quote.discountPercent, 15);
-  assert.equal(quote.totalEur, 11900);
+  assert.equal(quote.totalEur, 20400);
 
   const directQuote = calculatePriceQuote(
     mayuraInn,
-    3500,
+    6000,
     '2027-01-10',
     '2027-01-12',
     2,
     ''
   );
   assert.equal(directQuote.nights, 2);
-  assert.equal(directQuote.subtotal, 14000);
+  assert.equal(directQuote.subtotal, 24000);
   assert.equal(directQuote.discountPercent, 10);
-  assert.equal(directQuote.totalEur, 12600);
+  assert.equal(directQuote.totalEur, 21600);
 });
 
 test('formatShortDateRange formats dates cleanly for the sticky booking bar', () => {

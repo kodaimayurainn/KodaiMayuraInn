@@ -364,7 +364,7 @@ export const HotelDetailModal: React.FC<{
                 {hotel.fullDescription}
               </p>
               <div className="mt-4 font-courier text-xs text-[#5C5852]">
-                Coordinates: {hotel.coordinates} · Adults-Only (16+)
+                Coordinates: {hotel.coordinates} · Family-Friendly Hillside Sanctuary
               </div>
             </div>
 
@@ -399,7 +399,7 @@ export const HotelDetailModal: React.FC<{
                       {room.name}
                     </h4>
                     <div className="mt-1 font-courier text-xs text-[#5C5852]">
-                      {room.sizeSqm} m² · Up to {room.maxGuests} Adults
+                      Up to {room.maxGuests} Guests · Family Friendly
                     </div>
                     <p className="mt-3 font-courier text-xs leading-relaxed text-[#262421]">
                       {room.description}
@@ -733,7 +733,7 @@ export const BookingModal: React.FC<{
               </div>
               <div className="font-courier text-xs text-white/90">
                 {justConfirmed.checkIn} to {justConfirmed.checkOut} ·{' '}
-                {justConfirmed.rooms} Room(s), {justConfirmed.adults} Adult(s)
+                {justConfirmed.rooms} Room(s), {justConfirmed.adults} Guest(s)
               </div>
               <div className="font-display text-xl pt-2 border-t border-white/20 tabular-nums">
                 Total Guaranteed Rate: ₹{justConfirmed.totalEur}
@@ -767,7 +767,7 @@ export const BookingModal: React.FC<{
                 <strong>{draft.checkOut}</strong> ({quote.nights} nights)
               </div>
               <div>
-                Occupancy: {draft.rooms} Room(s) · {draft.adults} Adult(s)
+                Occupancy: {draft.rooms} Room(s) · {draft.adults} Guest(s)
               </div>
               {quote.appliedOfferTitle && (
                 <div className="text-[#4A443B] font-bold">

@@ -71,7 +71,7 @@ export default function App() {
       adults: 2,
       guestName: 'Charles Miller',
       guestEmail: 'charles@example.com',
-      totalEur: 14000,
+      totalEur: 24000,
     },
   ]);
 
@@ -173,7 +173,7 @@ export default function App() {
         'Kodai Mayura Inn is minutes from Kodaikanal Lake, Pine Forest, Pillar Rocks, Coaker’s Walk, and Guna Caves. We can arrange morning guided walks or vehicle transfers.';
     } else if (lower.includes('room') || lower.includes('suite') || lower.includes('stay') || lower.includes('booking')) {
       reply =
-        'Kodai Mayura Inn offers luxury 2 Bedroom with Hall and 3 Bedroom with Hall layouts. Direct bookings receive complimentary breakfast and best rate guarantee.';
+        'Kodai Mayura Inn offers luxury Single Bedroom, 2 Bedroom with Hall and 3 Bedroom with Hall layouts. Direct bookings receive best rate guarantee.';
     }
     setConciergeMessages((prev) => [
       ...prev,

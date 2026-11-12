@@ -169,7 +169,7 @@ export const TestimonialsAndResortSection: React.FC<
                 </div>
                 <div className="font-courier text-xs text-white/80 mt-1 flex items-center gap-2">
                   <PinIcon className="w-3.5 h-3.5" />
-                  <span>Highland Sanctuary · Panoramic Mountain Terraces · Adults-Only</span>
+                  <span>Highland Sanctuary · Panoramic Mountain Terraces · Family-Friendly</span>
                 </div>
               </div>
 
