@@ -46,7 +46,7 @@ export const FooterSection: React.FC<FooterProps> = ({
         className="max-w-[1360px] mx-auto"
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start pb-16">
-          {/* Left: Mayura Inn Logo */}
+          {/* Left: Kodai Mayura Inn Logo */}
           <div className="md:col-span-5">
             <a
               href="#top"
@@ -54,7 +54,7 @@ export const FooterSection: React.FC<FooterProps> = ({
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              aria-label="Mayura Inn Resort"
+              aria-label="Kodai Mayura Inn Resort"
               className="inline-block"
             >
               <MayuraInnLogo className="w-[180px] sm:w-[210px] h-auto" variant="white" />
@@ -124,8 +124,8 @@ export const FooterSection: React.FC<FooterProps> = ({
                   type="button"
                   onClick={() =>
                     onOpenInfoModal(
-                      'ABOUT MAYURA INN',
-                      'Mayura Inn is an exclusive boutique hillside resort in Kodaikanal. Rooted in warm minimalism, organic architecture, and tranquil natural beauty, our property offers an unhurried mountain sanctuary for restorative escapes.'
+                      'ABOUT KODAI MAYURA INN',
+                      'Kodai Mayura Inn is an exclusive boutique hillside resort in Kodaikanal. Rooted in warm minimalism, organic architecture, and tranquil natural beauty, our property offers an unhurried mountain sanctuary for restorative escapes.'
                     )
                   }
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
@@ -148,7 +148,7 @@ export const FooterSection: React.FC<FooterProps> = ({
                   onClick={() =>
                     onOpenInfoModal(
                       'COMPANY INFORMATION',
-                      'Mayura Inn Kodaikanal. Registered boutique luxury hospitality retreat in Kodaikanal, Tamil Nadu, India.'
+                      'Kodai Kodai Mayura Inn. Registered boutique luxury hospitality retreat in Kodaikanal, Tamil Nadu, India.'
                     )
                   }
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
@@ -175,7 +175,7 @@ export const FooterSection: React.FC<FooterProps> = ({
                   type="button"
                   onClick={() =>
                     onOpenInfoModal(
-                      'CAREERS AT MAYURA INN',
+                      'CAREERS AT KODAI MAYURA INN',
                       'Join our seasonal and year-round hospitality team in Kodaikanal. Send your CV to talent@mayurainn.com.'
                     )
                   }
@@ -204,7 +204,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mayura Inn on Instagram"
+              aria-label="Kodai Mayura Inn on Instagram"
               className="text-white/85 hover:text-white transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -217,7 +217,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               href="https://www.facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mayura Inn on Facebook"
+              aria-label="Kodai Mayura Inn on Facebook"
               className="text-white/85 hover:text-white transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -229,7 +229,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               href="https://www.linkedin.com/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mayura Inn on LinkedIn"
+              aria-label="Kodai Mayura Inn on LinkedIn"
               className="text-white/85 hover:text-white transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -241,7 +241,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               href="https://www.youtube.com/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mayura Inn on YouTube"
+              aria-label="Kodai Mayura Inn on YouTube"
               className="text-white/85 hover:text-white transition-colors"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -260,7 +260,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               onClick={() =>
                 onOpenInfoModal(
                   'PRIVACY POLICY',
-                  'Mayura Inn respects your privacy and processes personal reservation data strictly and securely in accordance with global data protection standards.'
+                  'Kodai Mayura Inn respects your privacy and processes personal reservation data strictly and securely in accordance with global data protection standards.'
                 )
               }
               className="hover:text-white cursor-pointer"
@@ -292,7 +292,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               User Generated Content
             </button>
           </div>
-          <div>Mayura Inn, All rights reserved</div>
+          <div>Kodai Mayura Inn, All rights reserved</div>
         </div>
       </motion.div>
     </footer>
@@ -407,7 +407,7 @@ export const HotelDetailModal: React.FC<{
                   </div>
                   <div className="mt-5 pt-3 border-t border-[#EAE7E1] flex items-center justify-between">
                     <span className="font-display text-xl tabular-nums">
-                      €{room.rateEur}{' '}
+                      ₹{room.rateEur}{' '}
                       <span className="font-courier text-xs font-normal text-[#5C5852]">
                         / night
                       </span>
@@ -603,7 +603,7 @@ export const BookingModal: React.FC<{
                 <option value="">SELECT ACCOMMODATION</option>
                 {HOTELS.map((h) => (
                   <option key={h.id} value={h.id}>
-                    {h.name} ({h.country}) — €{h.nightlyRateEur}/night
+                    {h.name} ({h.country}) — ₹{h.nightlyRateEur}/night
                   </option>
                 ))}
               </select>
@@ -736,7 +736,7 @@ export const BookingModal: React.FC<{
                 {justConfirmed.rooms} Room(s), {justConfirmed.adults} Adult(s)
               </div>
               <div className="font-display text-xl pt-2 border-t border-white/20 tabular-nums">
-                Total Guaranteed Rate: €{justConfirmed.totalEur}
+                Total Guaranteed Rate: ₹{justConfirmed.totalEur}
               </div>
             </div>
 
@@ -771,13 +771,13 @@ export const BookingModal: React.FC<{
               </div>
               {quote.appliedOfferTitle && (
                 <div className="text-[#4A443B] font-bold">
-                  Applied Benefit: {quote.appliedOfferTitle} (-€
+                  Applied Benefit: {quote.appliedOfferTitle} (-₹
                   {quote.discountAmount})
                 </div>
               )}
               <div className="pt-2 border-t border-[#D3CFC7] flex items-center justify-between font-display text-xl text-[#171614] tabular-nums">
                 <span>TOTAL STAY</span>
-                <span>€{quote.totalEur}</span>
+                <span>₹{quote.totalEur}</span>
               </div>
             </div>
 
@@ -828,7 +828,7 @@ export const BookingModal: React.FC<{
               type="submit"
               className="w-full py-3.5 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-lg uppercase tracking-wider cursor-pointer"
             >
-              CONFIRM RESERVATION (€{quote.totalEur})
+              CONFIRM RESERVATION (₹{quote.totalEur})
             </button>
           </form>
         )}
@@ -848,7 +848,7 @@ export const BookingModal: React.FC<{
                     <strong>{b.referenceCode}</strong> · {b.hotelName} (
                     {b.checkIn})
                   </span>
-                  <span className="tabular-nums font-bold">€{b.totalEur}</span>
+                  <span className="tabular-nums font-bold">₹{b.totalEur}</span>
                 </div>
               ))}
             </div>

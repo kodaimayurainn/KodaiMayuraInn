@@ -10,7 +10,7 @@ export function MayuraInnLogo({
   return (
     <img
       src="/assets/text.png"
-      alt="Mayura Inn Hotels"
+      alt="Kodai Mayura Inn Hotels"
       referrerPolicy="no-referrer"
       className={`${className} select-none object-contain ${
         variant === 'white' ? 'brightness-0 invert' : 'brightness-0'

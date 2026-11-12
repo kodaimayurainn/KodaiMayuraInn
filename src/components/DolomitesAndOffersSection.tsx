@@ -54,7 +54,7 @@ export const DolomitesAndOffersSection: React.FC<
 
   return (
     <>
-      {/* NEARBY ATTRACTIONS Full-Bleed Feature matching Mayura Inn Layout */}
+      {/* NEARBY ATTRACTIONS Full-Bleed Feature matching Kodai Mayura Inn Layout */}
       <section
         id="attractions-section"
         className="relative w-full min-h-[640px] md:min-h-[740px] bg-[#231F1B] text-white flex items-center overflow-hidden my-6"

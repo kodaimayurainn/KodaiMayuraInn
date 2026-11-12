@@ -63,7 +63,7 @@ export default function App() {
   >([
     {
       referenceCode: 'MI-842910',
-      hotelName: 'Mayura Inn Kodaikanal',
+      hotelName: 'Kodai Mayura Inn',
       roomName: '2 Bedroom with Hall Suite',
       checkIn: '2027-01-15',
       checkOut: '2027-01-19',
@@ -71,7 +71,7 @@ export default function App() {
       adults: 2,
       guestName: 'Charles Miller',
       guestEmail: 'charles@example.com',
-      totalEur: 1280,
+      totalEur: 14000,
     },
   ]);
 
@@ -87,7 +87,7 @@ export default function App() {
   >([
     {
       sender: 'concierge',
-      text: 'Welcome to Mayura Inn, Kodaikanal. How may our Reservations Concierge assist with your stay, suite selection, or local attractions?',
+      text: 'Welcome to Kodai Mayura Inn, Kodaikanal. How may our Reservations Concierge assist with your stay, suite selection, or local attractions?',
     },
   ]);
 
@@ -167,13 +167,13 @@ export default function App() {
     if (!trimmed) return;
     const lower = trimmed.toLowerCase();
     let reply =
-      'Our reservations team has noted your inquiry. Enjoy direct booking perks and special offers for 2 Bedroom and 3 Bedroom suites at Mayura Inn with code STAYLONGER15.';
+      'Our reservations team has noted your inquiry. Enjoy direct booking perks and special offers for 2 Bedroom and 3 Bedroom suites at Kodai Mayura Inn with code STAYLONGER15.';
     if (lower.includes('lake') || lower.includes('attraction') || lower.includes('pine') || lower.includes('guna')) {
       reply =
-        'Mayura Inn is minutes from Kodaikanal Lake, Pine Forest, Pillar Rocks, Coaker’s Walk, and Guna Caves. We can arrange morning guided walks or vehicle transfers.';
+        'Kodai Mayura Inn is minutes from Kodaikanal Lake, Pine Forest, Pillar Rocks, Coaker’s Walk, and Guna Caves. We can arrange morning guided walks or vehicle transfers.';
     } else if (lower.includes('room') || lower.includes('suite') || lower.includes('stay') || lower.includes('booking')) {
       reply =
-        'Mayura Inn offers luxury 2 Bedroom with Hall and 3 Bedroom with Hall layouts. Direct bookings receive complimentary breakfast and best rate guarantee.';
+        'Kodai Mayura Inn offers luxury 2 Bedroom with Hall and 3 Bedroom with Hall layouts. Direct bookings receive complimentary breakfast and best rate guarantee.';
     }
     setConciergeMessages((prev) => [
       ...prev,
@@ -209,7 +209,7 @@ export default function App() {
         {/* Hero Video with Smooth Parallax */}
         <section
           ref={heroRef}
-          aria-label="Mayura Inn Hero"
+          aria-label="Kodai Mayura Inn Hero"
           className="relative w-full h-[calc(100vh-56px)] min-h-[540px] max-h-[880px] bg-[#2D2924] overflow-hidden flex items-center justify-center"
         >
           <motion.div
@@ -233,7 +233,7 @@ export default function App() {
             className="absolute inset-0 bg-black pointer-events-none"
           />
 
-          {/* Centered Large Mayura Inn Logo with Parallax & Fade */}
+          {/* Centered Large Kodai Mayura Inn Logo with Parallax & Fade */}
           <motion.div
             style={{ y: heroLogoY, opacity: heroLogoOpacity, scale: heroLogoScale }}
             className="relative z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none will-change-transform"
@@ -382,13 +382,13 @@ export default function App() {
       {conciergeOpen && (
         <div
           role="dialog"
-          aria-label="Mayura Inn Guest Concierge"
+          aria-label="Kodai Mayura Inn Guest Concierge"
           className="fixed bottom-20 right-4 sm:right-6 z-50 w-[92vw] max-w-[360px] bg-[#F9F8F6] border border-[#D3CFC7] shadow-2xl flex flex-col"
         >
           <div className="bg-[#4A443B] text-white px-4 py-3 flex items-center justify-between">
             <div>
               <div className="font-display text-lg uppercase tracking-wide">
-                MAYURA INN CONCIERGE
+                KODAI MAYURA INN CONCIERGE
               </div>
               <div className="font-courier text-[11px] text-white/75">
                 Direct Reservations & Destination Advice

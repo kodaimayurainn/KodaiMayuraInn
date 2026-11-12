@@ -2,9 +2,9 @@
 <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
 
-# Mayura Inn — Boutique Hillside Resort Kodaikanal
+# Kodai Mayura Inn — Boutique Hillside Resort Kodaikanal
 
-Elevated escapes in the misty hills of Kodaikanal. Discover Mayura Inn's collection of boutique, design-led luxury suites and residences.
+Elevated escapes in the misty hills of Kodaikanal. Discover Kodai Mayura Inn's collection of boutique, design-led luxury suites and residences.
 
 ## Run Locally
 

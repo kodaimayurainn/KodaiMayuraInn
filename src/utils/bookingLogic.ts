@@ -99,7 +99,7 @@ export function calculatePriceQuote(
       appliedOfferTitle = 'Stay Longer + Save (15% Off)';
     } else {
       discountPercent = 10;
-      appliedOfferTitle = 'Mayura Inn Direct Booking 10% Off';
+      appliedOfferTitle = 'Kodai Mayura Inn Direct Booking 10% Off';
     }
   }
 

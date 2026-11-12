@@ -14,7 +14,7 @@ test('calculateNights computes exact night count and handles invalid ranges', ()
   assert.equal(calculateNights('', '2027-06-14'), 0);
 });
 
-test('validateBookingDraft enforces accommodation and date selection matching Mayura Inn dialogs', () => {
+test('validateBookingDraft enforces accommodation and date selection matching Kodai Mayura Inn dialogs', () => {
   const missingHotel = validateBookingDraft({
     hotelId: '',
     checkIn: '2027-06-10',
@@ -50,33 +50,33 @@ test('validateBookingDraft enforces accommodation and date selection matching Ma
   assert.equal(validDraft.valid, true);
 });
 
-test('calculatePriceQuote applies Stay Longer + Save 15% and Mayura Inn 10% direct discount', () => {
+test('calculatePriceQuote applies Stay Longer + Save 15% and Kodai Mayura Inn 10% direct discount', () => {
   const mayuraInn = HOTELS.find((h) => h.id === 'mayura-inn')!;
   const quote = calculatePriceQuote(
     mayuraInn,
-    320,
+    3500,
     '2027-05-01',
     '2027-05-05',
     1,
     'STAYLONGER15'
   );
   assert.equal(quote.nights, 4);
-  assert.equal(quote.subtotal, 1280);
+  assert.equal(quote.subtotal, 14000);
   assert.equal(quote.discountPercent, 15);
-  assert.equal(quote.totalEur, 1088);
+  assert.equal(quote.totalEur, 11900);
 
   const directQuote = calculatePriceQuote(
     mayuraInn,
-    320,
+    3500,
     '2027-01-10',
     '2027-01-12',
     2,
     ''
   );
   assert.equal(directQuote.nights, 2);
-  assert.equal(directQuote.subtotal, 1280);
+  assert.equal(directQuote.subtotal, 14000);
   assert.equal(directQuote.discountPercent, 10);
-  assert.equal(directQuote.totalEur, 1152);
+  assert.equal(directQuote.totalEur, 12600);
 });
 
 test('formatShortDateRange formats dates cleanly for the sticky booking bar', () => {

@@ -56,7 +56,7 @@ export const TestimonialsAndResortSection: React.FC<
               </blockquote>
 
               <div className="mt-8 font-courier text-[13px] sm:text-[14px] md:text-[15px] font-bold tracking-wide text-[#F9F8F6]/90">
-                Mayura Inn Kodaikanal – {currentReview.guestName}, {currentReview.location}
+                Kodai Mayura Inn – {currentReview.guestName}, {currentReview.location}
               </div>
 
               <div className="mt-5">
@@ -151,7 +151,7 @@ export const TestimonialsAndResortSection: React.FC<
           >
             <img
               src="/assets/kodai/exterior.png"
-              alt="Mayura Inn Resort Overall Exterior Architecture"
+              alt="Kodai Mayura Inn Resort Overall Exterior Architecture"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />

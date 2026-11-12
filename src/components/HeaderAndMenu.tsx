@@ -39,14 +39,14 @@ export const HeaderAndMenu: React.FC<HeaderAndMenuProps> = ({
           </button>
         </div>
 
-        {/* Zone 2: Centered Mayura Inn Logo */}
+        {/* Zone 2: Centered Kodai Mayura Inn Logo */}
         <a
           href="#top"
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          aria-label="Mayura Inn Resort Home"
+          aria-label="Kodai Mayura Inn Resort Home"
           className={`transition-opacity duration-300 ${
             showHeaderLogo ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
@@ -162,7 +162,7 @@ export const HeaderAndMenu: React.FC<HeaderAndMenuProps> = ({
             </div>
 
             <div className="pt-8 border-t border-white/15 font-courier text-xs text-white/70 space-y-1">
-              <p>Mayura Inn · Hillside Sanctuary</p>
+              <p>Kodai Mayura Inn · Hillside Sanctuary</p>
               <p>Kodaikanal · Western Ghats, Tamil Nadu</p>
             </div>
           </nav>

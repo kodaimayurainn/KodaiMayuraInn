@@ -25,7 +25,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
     badge: 'POPULAR SUITE',
     sizeSqm: 95,
     maxGuests: 4,
-    rateEur: 320,
+    rateEur: 3500,
     description:
       'Thoughtfully curated for quiet luxury and relaxation. Features two spacious master bedrooms with king beds, an expansive central living hall for unwinding, private scenic balconies, hand-troweled warm plaster accents, and twin en-suite bathrooms.',
     amenities: [
@@ -45,7 +45,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
     badge: 'SIGNATURE RESIDENCE',
     sizeSqm: 145,
     maxGuests: 6,
-    rateEur: 480,
+    rateEur: 4500,
     description:
       'Our signature multi-bedroom haven offering unparalleled privacy and space. Three generous bedrooms accompany a magnificent open-concept living and dining hall, wrap-around panoramic terrace, bespoke stone and timber craftsmanship, and dedicated guest concierge service.',
     amenities: [
@@ -72,7 +72,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
 
   return (
     <section id="rooms-section" className="bg-[#F9F8F6] pt-16 md:pt-24 pb-20">
-      {/* Intro Statement matching Mayura Inn Editorial Style */}
+      {/* Intro Statement matching Kodai Mayura Inn Editorial Style */}
       <div className="max-w-[1360px] mx-auto px-6 md:px-12 mb-16 md:mb-24">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
@@ -145,7 +145,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     {room.badge}
                   </div>
                   <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-sm text-white font-display text-sm px-3 py-1 tracking-wider uppercase">
-                    €{room.rateEur} / NIGHT
+                    ₹{room.rateEur.toLocaleString('en-IN')} / NIGHT
                   </div>
                 </div>
 
@@ -201,7 +201,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                         Starting from
                       </div>
                       <div className="font-display text-2xl text-[#171614]">
-                        €{room.rateEur}{' '}
+                        ₹{room.rateEur.toLocaleString('en-IN')}{' '}
                         <span className="font-courier text-xs text-[#5C5852] font-normal">
                           / night
                         </span>

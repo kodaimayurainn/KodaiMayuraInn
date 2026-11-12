@@ -52,37 +52,37 @@ export const HOTELS: Hotel[] = [
   {
     id: 'mayura-inn',
     slug: 'mayura-inn-kodaikanal',
-    name: 'Mayura Inn',
+    name: 'Kodai Mayura Inn',
     location: 'Kodaikanal, Tamil Nadu',
     country: 'India',
     isNewOpening: false,
     cardImage: '/assets/kodai/exterior.png',
     heroImage: '/assets/kodai/exterior.png',
     shortDescription:
-      'Set against mist-kissed hills and emerald canopy, Mayura Inn is a boutique mountain sanctuary in Kodaikanal designed for quiet luxury and restorative escapes.',
+      'Set against mist-kissed hills and emerald canopy, Kodai Mayura Inn is a boutique mountain sanctuary in Kodaikanal designed for quiet luxury and restorative escapes.',
     fullDescription:
-      'Perched in the tranquil hills of Kodaikanal, Mayura Inn offers a collection of luxury multi-bedroom suites and residences. Merging raw stone foundations, warm timber detailing, and open panoramic verandas, each space invites you into an unhurried rhythm of stillness, fresh mountain air, and natural serenity.',
+      'Perched in the tranquil hills of Kodaikanal, Kodai Mayura Inn offers a collection of luxury multi-bedroom suites and residences. Merging raw stone foundations, warm timber detailing, and open panoramic verandas, each space invites you into an unhurried rhythm of stillness, fresh mountain air, and natural serenity.',
     highlights: [
       'Panoramic hillside verandas overlooking lush valleys',
       'Exclusive 2 Bedroom & 3 Bedroom luxury suites with central living halls',
       'Minutes from Kodaikanal Lake, Pine Forest & Pillar Rocks',
       'Artisanal dining, outdoor fire pits & dedicated concierge',
     ],
-    nightlyRateEur: 320,
+    nightlyRateEur: 3500,
     coordinates: '10.2381° N, 77.4892° E',
     rooms: [
       {
         name: '2 Bedroom with Hall Suite',
         sizeSqm: 95,
         maxGuests: 4,
-        rateEur: 320,
+        rateEur: 3500,
         description: 'Thoughtfully curated luxury suite with two king bedrooms, central sunlit living hall, private balconies, and twin en-suite bathrooms.',
       },
       {
         name: '3 Bedroom with Hall Residence',
         sizeSqm: 145,
         maxGuests: 6,
-        rateEur: 480,
+        rateEur: 4500,
         description: 'Our signature multi-bedroom haven offering three independent en-suite bedrooms, expansive dining and living hall, and wrap-around panoramic veranda.',
       },
     ],
@@ -94,7 +94,7 @@ export const OFFERS: Offer[] = [
     id: 'stay-longer-save',
     title: 'STAY LONGER + SAVE',
     hotelId: 'mayura-inn',
-    hotelName: 'Mayura Inn',
+    hotelName: 'Kodai Mayura Inn',
     discountPercent: 15,
     minNights: 3,
     bookBy: 'until 28 December 2027',
@@ -102,7 +102,7 @@ export const OFFERS: Offer[] = [
     image: '/assets/kodai/2 Bedroom with Hall.png',
     wideImage: '/assets/kodai/exterior.png',
     summary:
-      'Linger a little longer in the misty hills. Stay 3 nights or more at Mayura Inn and enjoy 15% off, with more time to unwind, disconnect, and sink into nature.',
+      'Linger a little longer in the misty hills. Stay 3 nights or more at Kodai Mayura Inn and enjoy 15% off, with more time to unwind, disconnect, and sink into nature.',
     details: [
       'Minimum stay 3 nights',
       'Valid for 2 Bedroom and 3 Bedroom suites',
@@ -115,7 +115,7 @@ export const OFFERS: Offer[] = [
     id: 'advanced-saver',
     title: 'ADVANCED SAVER',
     hotelId: 'mayura-inn',
-    hotelName: 'Mayura Inn',
+    hotelName: 'Kodai Mayura Inn',
     discountPercent: 10,
     minNights: 1,
     bookBy: 'until 28 December 2027',
@@ -123,7 +123,7 @@ export const OFFERS: Offer[] = [
     image: '/assets/kodai/3 Bedroom with hall.png',
     wideImage: '/assets/kodai/exterior.png',
     summary:
-      'Slow down and settle in. Enjoy 10% off your direct reservation at Mayura Inn, where calm spaces, panoramic verandas, and cool breezes invite you to truly unwind.',
+      'Slow down and settle in. Enjoy 10% off your direct reservation at Kodai Mayura Inn, where calm spaces, panoramic verandas, and cool breezes invite you to truly unwind.',
     details: [
       'Valid on direct website bookings',
       'All suite categories',
@@ -226,18 +226,18 @@ export const DOLOMITES_SLIDES = [
     id: 'mayura-interior',
     image: '/assets/kodai/2 Bedroom with Hall.png',
     fallbackImage: '/assets/kodai/2 Bedroom with Hall.png',
-    caption: 'Fireside Lounge & Textured Curtains — Mayura Inn',
+    caption: 'Fireside Lounge & Textured Curtains — Kodai Mayura Inn',
   },
   {
     id: 'mayura-exterior',
     image: '/assets/kodai/exterior.png',
     fallbackImage: '/assets/kodai/exterior.png',
-    caption: 'Highland Sanctuary Facade — Mayura Inn',
+    caption: 'Highland Sanctuary Facade — Kodai Mayura Inn',
   },
   {
     id: 'mayura-cabana',
     image: '/assets/kodai/3 Bedroom with hall.png',
     fallbackImage: '/assets/kodai/3 Bedroom with hall.png',
-    caption: 'Sunlit Timber Lounge & Terrace — Mayura Inn',
+    caption: 'Sunlit Timber Lounge & Terrace — Kodai Mayura Inn',
   },
 ];
