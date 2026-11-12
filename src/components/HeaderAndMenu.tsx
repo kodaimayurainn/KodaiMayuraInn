@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { MayuraInnLogo, HamburgerIcon } from './MayuraInnIcons';
-import { Hotel, HOTELS } from '../data/mayurainnData';
+import { Hotel } from '../data/mayurainnData';
 
 interface HeaderAndMenuProps {
   showHeaderLogo: boolean;
-  onSelectHotel: (hotel: Hotel) => void;
-  onOpenManageBooking: () => void;
+  onSelectHotel?: (hotel: Hotel) => void;
   onNavigateSection: (sectionId: string) => void;
 }
 
 export const HeaderAndMenu: React.FC<HeaderAndMenuProps> = ({
   showHeaderLogo,
-  onSelectHotel,
-  onOpenManageBooking,
   onNavigateSection,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hotelsExpanded, setHotelsExpanded] = useState(true);
 
   const handleNavClick = (sectionId: string) => {
     setMenuOpen(false);
@@ -119,33 +115,10 @@ export const HeaderAndMenu: React.FC<HeaderAndMenuProps> = ({
                 <li>
                   <button
                     type="button"
-                    onClick={() => handleNavClick('offers-section')}
-                    className="font-display text-2xl tracking-wider uppercase text-white hover:text-white/80 cursor-pointer"
-                  >
-                    OFFERS
-                  </button>
-                </li>
-
-                <li>
-                  <button
-                    type="button"
                     onClick={() => handleNavClick('testimonials-section')}
                     className="font-display text-2xl tracking-wider uppercase text-white hover:text-white/80 cursor-pointer"
                   >
                     GUEST REVIEWS
-                  </button>
-                </li>
-
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMenuOpen(false);
-                      onOpenManageBooking();
-                    }}
-                    className="font-display text-2xl tracking-wider uppercase text-white hover:text-white/80 cursor-pointer"
-                  >
-                    MANAGE MY BOOKING
                   </button>
                 </li>
 

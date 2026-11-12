@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Users, Check, Sparkles, X, ChevronRight } from 'lucide-react';
+import { Users, Check, Sparkles, X } from 'lucide-react';
 
 export interface RoomSuite {
   id: string;
@@ -75,12 +75,10 @@ export const FEATURED_ROOMS: RoomSuite[] = [
 ];
 
 interface RoomsSectionProps {
-  onQuickBookRoom: (room: RoomSuite) => void;
   onSelectRoomDetails?: (room: RoomSuite) => void;
 }
 
 export const RoomsSection: React.FC<RoomsSectionProps> = ({
-  onQuickBookRoom,
   onSelectRoomDetails,
 }) => {
   const [modalRoom, setModalRoom] = useState<RoomSuite | null>(null);
@@ -119,7 +117,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
         </motion.div>
       </div>
 
-      {/* Section Header */}
+      {/* Section Header with pricing notice */}
       <div className="max-w-[1360px] mx-auto px-6 md:px-12 mb-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -133,7 +131,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
               OUR ROOMS
             </h2>
             <p className="font-courier text-xs text-[#5C5852] mt-1.5 uppercase tracking-wider">
-              3 Signature Room & Suite Layouts Available
+              3 Signature Room & Suite Layouts Available · *Prices may vary based on demand
             </p>
           </div>
           <div className="font-courier text-xs text-[#5C5852]">
@@ -197,7 +195,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                   </div>
                 </div>
 
-                {/* Booking CTA Bar */}
+                {/* Pricing & Specifications Action */}
                 <div className="pt-5 border-t border-[#DCD9D0] flex flex-wrap items-center justify-between gap-3 mt-4">
                   <div>
                     <div className="font-courier text-[11px] text-[#5C5852] uppercase">
@@ -209,22 +207,18 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                         / night
                       </span>
                     </div>
+                    <div className="font-courier text-[10.5px] text-[#828578] mt-1">
+                      *Prices may vary based on demand
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center">
                     <button
                       type="button"
                       onClick={() => handleOpenDetails(room)}
-                      className="px-3.5 py-2.5 border border-[#4A443B] text-[#4A443B] font-display text-xs uppercase tracking-wider hover:bg-[#4A443B] hover:text-white transition-colors cursor-pointer"
+                      className="px-4 py-2.5 border border-[#4A443B] text-[#4A443B] font-display text-xs uppercase tracking-wider hover:bg-[#4A443B] hover:text-white transition-colors cursor-pointer"
                     >
                       SPECIFICATIONS
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onQuickBookRoom(room)}
-                      className="px-4 py-2.5 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-xs uppercase tracking-wider transition-colors cursor-pointer"
-                    >
-                      BOOK THIS ROOM
                     </button>
                   </div>
                 </div>
@@ -308,7 +302,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                   </ul>
                 </div>
 
-                {/* Pricing & CTA */}
+                {/* Pricing & Close Button */}
                 <div className="pt-5 border-t border-[#E5E2DC] flex flex-wrap items-center justify-between gap-4">
                   <div>
                     <div className="font-courier text-[11px] text-[#5C5852] uppercase">
@@ -320,27 +314,18 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                         / night
                       </span>
                     </div>
+                    <div className="font-courier text-[11px] text-[#828578] mt-1">
+                      *Prices may vary based on demand
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center">
                     <button
                       type="button"
                       onClick={() => setModalRoom(null)}
-                      className="px-5 py-2.5 border border-[#4A443B] text-[#4A443B] font-display text-sm uppercase tracking-wider hover:bg-[#4A443B] hover:text-white transition-colors cursor-pointer"
+                      className="px-6 py-2.5 bg-[#4A443B] hover:bg-[#3D3830] text-white font-display text-sm uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       CLOSE
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const target = modalRoom;
-                        setModalRoom(null);
-                        onQuickBookRoom(target);
-                      }}
-                      className="px-6 py-2.5 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-sm uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5"
-                    >
-                      <span>BOOK THIS ROOM</span>
-                      <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>

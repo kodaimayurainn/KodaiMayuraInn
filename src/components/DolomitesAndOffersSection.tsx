@@ -4,8 +4,6 @@ import {
   Attraction,
   NEARBY_ATTRACTIONS,
   Hotel,
-  Offer,
-  OFFERS,
 } from '../data/mayurainnData';
 import {
   HandDrawnArrowLeft,
@@ -15,15 +13,13 @@ import {
 import { Compass } from 'lucide-react';
 
 interface DolomitesAndOffersSectionProps {
-  onSelectHotelModal: (hotel: Hotel) => void;
-  onSelectOfferDrawer: (offer: Offer) => void;
+  onSelectHotelModal?: (hotel: Hotel) => void;
   onOpenInfoModal?: (title: string, content: string) => void;
-  onOpenConcierge?: () => void;
 }
 
 export const DolomitesAndOffersSection: React.FC<
   DolomitesAndOffersSectionProps
-> = ({ onSelectHotelModal, onSelectOfferDrawer, onOpenInfoModal, onOpenConcierge }) => {
+> = ({ onOpenInfoModal }) => {
   const [slideIdx, setSlideIdx] = useState(0);
   const currentAttraction: Attraction = NEARBY_ATTRACTIONS[slideIdx];
 
@@ -45,10 +41,8 @@ export const DolomitesAndOffersSection: React.FC<
         attraction.name.toUpperCase(),
         `${attraction.tagline}. Located ${attraction.distance}. ${attraction.description} Highlights include: ${attraction.highlights.join(
           ', '
-        )}. Inquire with our Reservations Concierge to arrange guided morning excursions or private vehicle transfers.`
+        )}.`
       );
-    } else if (onOpenConcierge) {
-      onOpenConcierge();
     }
   };
 
@@ -156,76 +150,6 @@ export const DolomitesAndOffersSection: React.FC<
               ))}
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* OFFERS Section matching Screenshot 9 */}
-      <section
-        id="offers-section"
-        className="bg-[#F9F8F6] py-16 md:py-24 px-6 md:px-12"
-      >
-        <div className="max-w-[1360px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-end justify-between mb-10"
-          >
-            <h2 className="font-display text-[44px] md:text-[54px] leading-none uppercase tracking-[0.02em] text-[#171614]">
-              OFFERS
-            </h2>
-          </motion.div>
-
-          {/* 2-Card Portrait Offer Layout matching Screenshot 9 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {OFFERS.map((offer, idx) => (
-              <motion.article
-                key={offer.id}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col group cursor-pointer"
-                onClick={() => onSelectOfferDrawer(offer)}
-              >
-                <div className="aspect-[474/560] w-full overflow-hidden bg-[#E5E2DC]">
-                  <img
-                    src={offer.image}
-                    alt={offer.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-
-                <h3 className="mt-5 font-display text-[28px] md:text-[31px] leading-tight uppercase tracking-[0.02em] text-[#171614]">
-                  {offer.title}
-                </h3>
-
-                <div className="mt-2 flex items-center gap-1.5 font-courier text-[13px] text-[#4A443B]">
-                  <PinIcon className="w-4 h-4 shrink-0" />
-                  <span>{offer.hotelName}</span>
-                </div>
-
-                <p className="mt-3 font-courier text-[13.5px] leading-[1.6] text-[#262421]">
-                  {offer.summary}
-                </p>
-
-                <div className="mt-5">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onSelectOfferDrawer(offer);
-                    }}
-                    className="font-display text-[16px] uppercase tracking-[0.04em] text-[#171614] border-b border-[#171614] pb-0.5 hover:text-[#4A443B] hover:border-[#4A443B] cursor-pointer"
-                  >
-                    FIND OUT MORE
-                  </button>
-                </div>
-              </motion.article>
-            ))}
-          </div>
         </div>
       </section>
     </>
