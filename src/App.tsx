@@ -7,8 +7,10 @@ import { RoomsSection } from './components/RoomsSection';
 import { TestimonialsAndResortSection } from './components/TestimonialsAndResortSection';
 import { DolomitesAndOffersSection } from './components/DolomitesAndOffersSection';
 import { FooterSection } from './components/FooterAndModals';
+import { AnimationLoader } from './components/AnimationLoader';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -37,6 +39,17 @@ export default function App() {
   });
 
   useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [loading]);
+
+  useEffect(() => {
     const onScroll = () => {
       setScrolledPastHero(window.scrollY > 260);
     };
@@ -53,6 +66,15 @@ export default function App() {
 
   return (
     <div id="top" className="min-h-screen bg-[#F9F8F6] text-[#171614]">
+      {/* Full-Screen Editorial Animation Loader matching Framer specification */}
+      <AnimationLoader
+        brandName="KODAI MAYURA INN"
+        duration={2.2}
+        background="#F9F8F6"
+        textColor="#171614"
+        onComplete={() => setLoading(false)}
+      />
+
       {/* Fixed Top Bar & Navigation Drawer */}
       <HeaderAndMenu
         showHeaderLogo={scrolledPastHero}
