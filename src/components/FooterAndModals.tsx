@@ -88,6 +88,14 @@ export const FooterSection: React.FC<FooterProps> = ({
                   NEARBY ATTRACTIONS
                 </a>
               </li>
+              <li>
+                <a
+                  href="#map-section"
+                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
+                >
+                  LOCATION & MAP
+                </a>
+              </li>
             </ul>
           </div>
 

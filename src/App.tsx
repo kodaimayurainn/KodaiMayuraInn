@@ -6,6 +6,7 @@ import { HeaderAndMenu } from './components/HeaderAndMenu';
 import { RoomsSection } from './components/RoomsSection';
 import { TestimonialsAndResortSection } from './components/TestimonialsAndResortSection';
 import { DolomitesAndOffersSection } from './components/DolomitesAndOffersSection';
+import { MapSection } from './components/MapSection';
 import { FooterSection } from './components/FooterAndModals';
 import { AnimationLoader } from './components/AnimationLoader';
 
@@ -132,6 +133,9 @@ export default function App() {
         <DolomitesAndOffersSection
           onOpenInfoModal={(title, content) => setInfoModal({ title, content })}
         />
+
+        {/* Resort Location & Map Section */}
+        <MapSection />
       </main>
 
       {/* Footer */}

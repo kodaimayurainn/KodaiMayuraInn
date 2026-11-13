@@ -115,6 +115,16 @@ export const HeaderAndMenu: React.FC<HeaderAndMenuProps> = ({
                 <li>
                   <button
                     type="button"
+                    onClick={() => handleNavClick('map-section')}
+                    className="font-display text-2xl tracking-wider uppercase text-white hover:text-white/80 cursor-pointer"
+                  >
+                    LOCATION & MAP
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    type="button"
                     onClick={() => handleNavClick('testimonials-section')}
                     className="font-display text-2xl tracking-wider uppercase text-white hover:text-white/80 cursor-pointer"
                   >

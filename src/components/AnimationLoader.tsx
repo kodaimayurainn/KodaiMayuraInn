@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   motion,
   AnimatePresence,
   useMotionValue,
   useSpring,
   useMotionValueEvent,
+  useTransform,
 } from 'motion/react';
 
 interface AnimationLoaderProps {
@@ -15,19 +16,24 @@ interface AnimationLoaderProps {
   onComplete?: () => void;
 }
 
+const CRITICAL_IMAGES = [
+  '/assets/text.png',
+  '/assets/kodai/exterior.png',
+  '/assets/kodai/single bedroom.jpeg',
+  '/assets/kodai/2 Bedroom with Hall.png',
+  '/assets/kodai/3 Bedroom with hall.png',
+  '/assets/attractions/lake.png',
+];
+
+const CRITICAL_VIDEOS = ['/assets/kodai/hero.mp4'];
+
 /**
- * High-performance, exact implementation of the Framer Animation Loader
- * (https://framer.com/m/Animation-loader-eHagKV.js@ijRh61gfd3rmanud1uxr)
- *
- * Features:
- * - Staggered letter reveal with blur & drift for the brand title
- * - Smooth cubic spring counter counting from 0% to 100%
- * - Minimalist horizontal expansion progress line
- * - Fluid curved mask slide-up reveal exit transition
+ * Editorial Animation Loader that synchronizes with the actual loading
+ * of all page content (images, hero video, fonts, and window load event).
  */
 export const AnimationLoader: React.FC<AnimationLoaderProps> = ({
   brandName = 'KODAI MAYURA INN',
-  duration = 2.4,
+  duration = 2.0,
   textColor = '#171614',
   background = '#F9F8F6',
   onComplete,
@@ -38,35 +44,138 @@ export const AnimationLoader: React.FC<AnimationLoaderProps> = ({
 
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, {
-    duration: duration * 1000,
-    bounce: 0,
+    damping: 32,
+    stiffness: 90,
   });
+  const progressRatio = useTransform(springValue, [0, 100], [0, 1]);
 
   useMotionValueEvent(springValue, 'change', (latest) => {
     const val = Math.min(100, Math.round(latest));
     setDisplayCount(val);
   });
 
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
+
   useEffect(() => {
-    // Start counting to 100
-    motionValue.set(100);
+    let isCancelled = false;
+    let loadedItems = 0;
+    const totalItems =
+      CRITICAL_IMAGES.length +
+      CRITICAL_VIDEOS.length +
+      1 + // document / window load
+      1; // fonts ready
 
-    // When the counter reaches 100, trigger the exit transition
-    const exitTimer = setTimeout(() => {
-      setIsExiting(true);
-    }, duration * 1000 + 150);
+    const startTime = Date.now();
+    const minDurationMs = duration * 1000;
 
-    // After exit animation completes, unmount and call onComplete
-    const finishTimer = setTimeout(() => {
-      setIsFinished(true);
-      if (onComplete) onComplete();
-    }, duration * 1000 + 1050);
+    const updateProgress = () => {
+      if (isCancelled) return;
+      const rawPercent = Math.round((loadedItems / totalItems) * 100);
+      motionValue.set(Math.min(95, rawPercent));
+    };
+
+    const markItemLoaded = () => {
+      loadedItems += 1;
+      updateProgress();
+      if (loadedItems >= totalItems) {
+        finishLoading();
+      }
+    };
+
+    let exitTimeout: ReturnType<typeof setTimeout> | null = null;
+    let finishTimeout: ReturnType<typeof setTimeout> | null = null;
+    let safetyTimeout: ReturnType<typeof setTimeout> | null = null;
+    let hasFinished = false;
+
+    const finishLoading = () => {
+      if (hasFinished) return;
+      hasFinished = true;
+
+      const elapsed = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDurationMs - elapsed);
+
+      setTimeout(() => {
+        if (isCancelled) return;
+        // Reach 100%
+        motionValue.set(100);
+
+        // Small pause at 100% for user satisfaction before slide up
+        exitTimeout = setTimeout(() => {
+          if (isCancelled) return;
+          setIsExiting(true);
+
+          finishTimeout = setTimeout(() => {
+            if (isCancelled) return;
+            setIsFinished(true);
+            if (onCompleteRef.current) {
+              onCompleteRef.current();
+            }
+          }, 850);
+        }, 300);
+      }, remainingTime);
+    };
+
+    // 1. Preload critical images
+    CRITICAL_IMAGES.forEach((src) => {
+      const img = new Image();
+      img.onload = markItemLoaded;
+      img.onerror = markItemLoaded;
+      img.src = src;
+    });
+
+    // 2. Preload/buffer critical hero video
+    CRITICAL_VIDEOS.forEach((src) => {
+      const video = document.createElement('video');
+      video.preload = 'auto';
+      video.muted = true;
+
+      const handleVideoReady = () => {
+        video.removeEventListener('loadeddata', handleVideoReady);
+        video.removeEventListener('error', handleVideoReady);
+        markItemLoaded();
+      };
+
+      video.addEventListener('loadeddata', handleVideoReady);
+      video.addEventListener('error', handleVideoReady);
+      video.src = src;
+      video.load();
+    });
+
+    // 3. Fonts ready check
+    if ('fonts' in document) {
+      document.fonts.ready
+        .then(() => markItemLoaded())
+        .catch(() => markItemLoaded());
+    } else {
+      markItemLoaded();
+    }
+
+    // 4. Window / DOM complete check
+    if (document.readyState === 'complete') {
+      markItemLoaded();
+    } else {
+      const handleWindowLoad = () => {
+        window.removeEventListener('load', handleWindowLoad);
+        markItemLoaded();
+      };
+      window.addEventListener('load', handleWindowLoad);
+    }
+
+    // Safety fallback: Never keep the user waiting more than 6.5s even if network stalls
+    safetyTimeout = setTimeout(() => {
+      if (!hasFinished) {
+        finishLoading();
+      }
+    }, 6500);
 
     return () => {
-      clearTimeout(exitTimer);
-      clearTimeout(finishTimer);
+      isCancelled = true;
+      if (exitTimeout) clearTimeout(exitTimeout);
+      if (finishTimeout) clearTimeout(finishTimeout);
+      if (safetyTimeout) clearTimeout(safetyTimeout);
     };
-  }, [duration, motionValue, onComplete]);
+  }, [duration, motionValue]);
 
   if (isFinished) return null;
 
@@ -135,12 +244,9 @@ export const AnimationLoader: React.FC<AnimationLoaderProps> = ({
           <div className="w-full my-auto py-10">
             <div className="w-full h-[1.5px] bg-black/10 overflow-hidden relative">
               <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                style={{ transformOrigin: '0% 50%' }}
-                transition={{
-                  duration: duration,
-                  ease: [0.12, 0.23, 0.5, 1],
+                style={{
+                  transformOrigin: '0% 50%',
+                  scaleX: progressRatio,
                 }}
                 className="absolute inset-0 bg-[#171614]"
               />
