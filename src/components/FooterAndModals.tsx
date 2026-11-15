@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { X } from 'lucide-react';
 import { MayuraInnLogo, PinIcon } from './MayuraInnIcons';
-import { Hotel } from '../data/mayurainnData';
+import { Hotel, RESORT_CONTACT } from '../data/mayurainnData';
 
 interface FooterProps {
   onOpenInfoModal: (title: string, content: string) => void;
@@ -40,6 +40,43 @@ export const FooterSection: React.FC<FooterProps> = ({
             <p className="mt-4 font-courier text-xs text-white/70 max-w-[320px] leading-relaxed">
               Boutique hillside retreat in Kodaikanal. Thoughtfully designed suites, panoramic mountain vistas, and unhurried luxury.
             </p>
+
+            <div className="mt-5 pt-4 border-t border-white/15 space-y-1.5 font-courier text-xs text-white/80">
+              <p>
+                <span className="text-white/50">Location:</span> {RESORT_CONTACT.location}
+              </p>
+              <p>
+                <span className="text-white/50">Contact:</span>{' '}
+                <a
+                  href={`tel:${RESORT_CONTACT.phoneTel}`}
+                  className="text-white hover:underline"
+                >
+                  {RESORT_CONTACT.phoneFormatted}
+                </a>
+              </p>
+              <p>
+                <span className="text-white/50">Instagram:</span>{' '}
+                <a
+                  href={RESORT_CONTACT.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:underline"
+                >
+                  {RESORT_CONTACT.instagramHandle}
+                </a>
+              </p>
+              <p>
+                <span className="text-white/50">Website:</span>{' '}
+                <a
+                  href={RESORT_CONTACT.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:underline"
+                >
+                  {RESORT_CONTACT.website}
+                </a>
+              </p>
+            </div>
           </div>
 
           {/* Middle Column 1: Suites & Exploration */}
@@ -100,7 +137,7 @@ export const FooterSection: React.FC<FooterProps> = ({
           </div>
 
           {/* Middle Column 2: Company Links */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-4">
             <div className="font-courier text-xs uppercase tracking-widest text-white/50 mb-3">
               ABOUT & CONTACT
             </div>
@@ -125,7 +162,7 @@ export const FooterSection: React.FC<FooterProps> = ({
                   onClick={() =>
                     onOpenInfoModal(
                       'COMPANY INFORMATION',
-                      'Kodai Mayura Inn. Registered boutique luxury hospitality retreat in Kodaikanal, Tamil Nadu, India.'
+                      `Kodai Mayura Inn. Registered boutique luxury hospitality retreat in Kodaikanal, Tamil Nadu, India. Website: ${RESORT_CONTACT.website} · Instagram: ${RESORT_CONTACT.instagramHandle} · Contact: ${RESORT_CONTACT.phoneFormatted}`
                     )
                   }
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
@@ -138,27 +175,13 @@ export const FooterSection: React.FC<FooterProps> = ({
                   type="button"
                   onClick={() =>
                     onOpenInfoModal(
-                      'CONTACT US',
-                      'Guest Inquiries & Support: info@kodaimayurainn.com · Available daily 08:00 – 22:00 IST.'
+                      'CONTACT US & RESERVATIONS',
+                      `Contact Number: ${RESORT_CONTACT.phoneFormatted} · Website: ${RESORT_CONTACT.website} · Instagram: ${RESORT_CONTACT.instagramHandle} · Location: ${RESORT_CONTACT.address} · Email: info@kodaimayurainn.com · Available daily 08:00 – 22:00 IST.`
                     )
                   }
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
                 >
                   CONTACT US
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() =>
-                    onOpenInfoModal(
-                      'CAREERS AT KODAI MAYURA INN',
-                      'Join our seasonal and year-round hospitality team in Kodaikanal. Send your CV to talent@mayurainn.com.'
-                    )
-                  }
-                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
-                >
-                  CAREER
                 </button>
               </li>
               <li>
@@ -173,59 +196,6 @@ export const FooterSection: React.FC<FooterProps> = ({
                 </button>
               </li>
             </ul>
-          </div>
-
-          {/* Right Column: Vertical Social Icons Stack */}
-          <div className="md:col-span-1 flex md:flex-col items-end justify-end gap-4">
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kodai Mayura Inn on Instagram"
-              className="text-white/85 hover:text-white transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="2.5" y="2.5" width="19" height="19" rx="5" />
-                <circle cx="12" cy="12" r="4.25" />
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-              </svg>
-            </a>
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kodai Mayura Inn on Facebook"
-              className="text-white/85 hover:text-white transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="12" cy="12" r="9.5" />
-                <path d="M13.5 21v-7h2.5l.5-3h-3V9.5c0-.8.3-1.5 1.5-1.5H16V5.2c-.4-.1-1.2-.2-2.2-.2-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2v7" />
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kodai Mayura Inn on LinkedIn"
-              className="text-white/85 hover:text-white transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0" />
-              </svg>
-            </a>
-            <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Kodai Mayura Inn on YouTube"
-              className="text-white/85 hover:text-white transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="2.25" y="6" width="19.5" height="12" rx="2" />
-                <polygon points="10 9.5 15 12 10 14.5 10 9.5" fill="currentColor" />
-              </svg>
-            </a>
           </div>
         </div>
 
@@ -261,7 +231,7 @@ export const FooterSection: React.FC<FooterProps> = ({
               onClick={() =>
                 onOpenInfoModal(
                   'USER GENERATED CONTENT',
-                  'By tagging #MayuraInn, you grant permission to showcase your photography in our community journal with full creator credit.'
+                  'Tag @kodaimayurainn on Instagram to be featured! By tagging @kodaimayurainn on Instagram, you grant permission to showcase your photography in our community journal with full creator credit.'
                 )
               }
               className="hover:text-white cursor-pointer"

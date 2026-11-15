@@ -1,6 +1,15 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Navigation, Compass, ExternalLink } from 'lucide-react';
+import {
+  MapPin,
+  Navigation,
+  Compass,
+  ExternalLink,
+  Phone,
+  Globe,
+  Instagram,
+} from 'lucide-react';
+import { RESORT_CONTACT } from '../data/mayurainnData';
 
 export const MapSection: React.FC = () => {
   const googleMapsUrl =
@@ -64,7 +73,7 @@ export const MapSection: React.FC = () => {
             <div className="pt-3 px-2 flex flex-wrap items-center justify-between text-[#828578] font-courier text-xs gap-2">
               <span className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#4A443B]" />
-                Kodaikanal, Tamil Nadu 624101 · 10.2446° N, 77.4917° E
+                {RESORT_CONTACT.address} · {RESORT_CONTACT.coordinates}
               </span>
               <a
                 href={googleMapsUrl}
@@ -97,27 +106,27 @@ export const MapSection: React.FC = () => {
               <div className="mt-6 space-y-4 font-courier text-xs">
                 <div className="pb-3 border-b border-white/15 flex items-center justify-between">
                   <span className="text-white/80">Kodaikanal Lake</span>
-                  <span className="text-[#D8D3C8] font-medium">5 mins (1.8 km)</span>
+                  <span className="text-[#D8D3C8] font-medium">1.8 km</span>
                 </div>
                 <div className="pb-3 border-b border-white/15 flex items-center justify-between">
                   <span className="text-white/80">Coaker&apos;s Walk</span>
-                  <span className="text-[#D8D3C8] font-medium">8 mins (2.6 km)</span>
+                  <span className="text-[#D8D3C8] font-medium">2.6 km</span>
                 </div>
                 <div className="pb-3 border-b border-white/15 flex items-center justify-between">
                   <span className="text-white/80">Pine Forest</span>
-                  <span className="text-[#D8D3C8] font-medium">12 mins (4.2 km)</span>
+                  <span className="text-[#D8D3C8] font-medium">4.2 km</span>
                 </div>
                 <div className="pb-3 border-b border-white/15 flex items-center justify-between">
                   <span className="text-white/80">Pillar Rocks</span>
-                  <span className="text-[#D8D3C8] font-medium">15 mins (5.5 km)</span>
+                  <span className="text-[#D8D3C8] font-medium">5.5 km</span>
                 </div>
                 <div className="pb-3 border-b border-white/15 flex items-center justify-between">
                   <span className="text-white/80">Guna Caves</span>
-                  <span className="text-[#D8D3C8] font-medium">14 mins (5.0 km)</span>
+                  <span className="text-[#D8D3C8] font-medium">5.0 km</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-white/80">Kodaikanal Bus Stand</span>
-                  <span className="text-[#D8D3C8] font-medium">7 mins (2.2 km)</span>
+                  <span className="text-[#D8D3C8] font-medium">2.2 km</span>
                 </div>
               </div>
             </div>
@@ -138,8 +147,87 @@ export const MapSection: React.FC = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Contact & Resort Info Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          {/* Location */}
+          <div className="bg-white border border-[#D3CFC7] p-5 rounded-sm">
+            <div className="flex items-center gap-2 text-[#828578] font-courier text-[11px] uppercase tracking-wider mb-2">
+              <MapPin className="w-4 h-4 text-[#828578]" />
+              <span>LOCATION</span>
+            </div>
+            <div className="font-display text-lg uppercase tracking-wide text-[#171614]">
+              KODAIKANAL
+            </div>
+            <p className="font-courier text-xs text-[#5C5852] mt-1">
+              Tamil Nadu 624101 · India
+            </p>
+          </div>
+
+          {/* Contact Number */}
+          <div className="bg-white border border-[#D3CFC7] p-5 rounded-sm">
+            <div className="flex items-center gap-2 text-[#828578] font-courier text-[11px] uppercase tracking-wider mb-2">
+              <Phone className="w-4 h-4 text-[#828578]" />
+              <span>CONTACT NUMBER</span>
+            </div>
+            <a
+              href={`tel:${RESORT_CONTACT.phoneTel}`}
+              className="font-display text-lg tracking-wide text-[#171614] hover:text-[#828578] transition-colors inline-block"
+            >
+              {RESORT_CONTACT.phoneFormatted}
+            </a>
+            <p className="font-courier text-xs text-[#5C5852] mt-1">
+              Direct Inquiries & Bookings
+            </p>
+          </div>
+
+          {/* Instagram */}
+          <div className="bg-white border border-[#D3CFC7] p-5 rounded-sm">
+            <div className="flex items-center gap-2 text-[#828578] font-courier text-[11px] uppercase tracking-wider mb-2">
+              <Instagram className="w-4 h-4 text-[#828578]" />
+              <span>INSTAGRAM</span>
+            </div>
+            <a
+              href={RESORT_CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-display text-lg uppercase tracking-wide text-[#171614] hover:text-[#828578] transition-colors inline-flex items-center gap-1.5"
+            >
+              <span>{RESORT_CONTACT.instagramHandle}</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#828578]" />
+            </a>
+            <p className="font-courier text-xs text-[#5C5852] mt-1">
+              Follow our hillside stories
+            </p>
+          </div>
+
+          {/* Website */}
+          <div className="bg-white border border-[#D3CFC7] p-5 rounded-sm">
+            <div className="flex items-center gap-2 text-[#828578] font-courier text-[11px] uppercase tracking-wider mb-2">
+              <Globe className="w-4 h-4 text-[#828578]" />
+              <span>OFFICIAL WEBSITE</span>
+            </div>
+            <a
+              href={RESORT_CONTACT.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-display text-lg uppercase tracking-wide text-[#171614] hover:text-[#828578] transition-colors inline-flex items-center gap-1.5"
+            >
+              <span>{RESORT_CONTACT.website}</span>
+              <ExternalLink className="w-3.5 h-3.5 text-[#828578]" />
+            </a>
+            <p className="font-courier text-xs text-[#5C5852] mt-1">
+              Direct rates & reservations
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
-

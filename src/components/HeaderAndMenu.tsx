@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { MayuraInnLogo, HamburgerIcon } from './MayuraInnIcons';
-import { Hotel } from '../data/mayurainnData';
+import { Hotel, RESORT_CONTACT } from '../data/mayurainnData';
 
 interface HeaderAndMenuProps {
   showHeaderLogo: boolean;
@@ -144,9 +144,40 @@ export const HeaderAndMenu: React.FC<HeaderAndMenuProps> = ({
               </ul>
             </div>
 
-            <div className="pt-8 border-t border-white/15 font-courier text-xs text-white/70 space-y-1">
-              <p>Kodai Mayura Inn · Hillside Sanctuary</p>
-              <p>Kodaikanal · Western Ghats, Tamil Nadu</p>
+            <div className="pt-8 border-t border-white/15 font-courier text-xs text-white/70 space-y-2">
+              <p className="text-white font-medium">Kodai Mayura Inn</p>
+              <p>Location: {RESORT_CONTACT.location}</p>
+              <p>
+                Tel:{' '}
+                <a
+                  href={`tel:${RESORT_CONTACT.phoneTel}`}
+                  className="text-white hover:underline"
+                >
+                  {RESORT_CONTACT.phoneFormatted}
+                </a>
+              </p>
+              <p>
+                Insta:{' '}
+                <a
+                  href={RESORT_CONTACT.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:underline"
+                >
+                  {RESORT_CONTACT.instagramHandle}
+                </a>
+              </p>
+              <p>
+                Web:{' '}
+                <a
+                  href={RESORT_CONTACT.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:underline"
+                >
+                  {RESORT_CONTACT.website}
+                </a>
+              </p>
             </div>
           </nav>
         </div>

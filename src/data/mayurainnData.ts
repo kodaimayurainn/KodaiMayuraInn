@@ -68,7 +68,7 @@ export const HOTELS: Hotel[] = [
       'Outdoor fire pits, tranquil gardens & scenic relaxation',
     ],
     nightlyRateEur: 3000,
-    coordinates: '10.2381° N, 77.4892° E',
+    coordinates: '10.2446° N, 77.4917° E',
     rooms: [
       {
         name: 'Single Bedroom',
@@ -176,7 +176,7 @@ export const NEARBY_ATTRACTIONS: Attraction[] = [
     id: 'kodaikanal-lake',
     name: 'Kodaikanal Lake',
     tagline: 'Iconic Star-Shaped Waterway & Misty Shores',
-    distance: '5 mins from resort',
+    distance: '1.8 km from resort',
     image: '/assets/attractions/lake.png',
     description:
       'The iconic star-shaped heart of Kodaikanal, framed by weeping willows and serene highland waters. Enjoy quiet sunrise strolls along the 5-kilometer promenade, gentle pedal-boating across the morning mist, or cycling beneath eucalyptus canopies.',
@@ -186,7 +186,7 @@ export const NEARBY_ATTRACTIONS: Attraction[] = [
     id: 'pine-forest',
     name: 'Pine Forest',
     tagline: 'Towering Century-Old Timber Groves',
-    distance: '12 mins from resort',
+    distance: '4.2 km from resort',
     image: '/assets/attractions/pine forest.png',
     description:
       'A majestic forest of towering century-old pines originally cultivated in 1906. Sunbeams filter through the high canopy onto a soft blanket of needles, creating an ethereal, quiet sanctuary ideal for morning mindfulness and slow nature walks.',
@@ -196,7 +196,7 @@ export const NEARBY_ATTRACTIONS: Attraction[] = [
     id: 'pillar-rocks',
     name: 'Pillar Rocks',
     tagline: 'Dramatic 400ft Granite Monoliths',
-    distance: '15 mins from resort',
+    distance: '5.5 km from resort',
     image: '/assets/attractions/pillar rock.png',
     description:
       'Three dramatic vertical granite monoliths rising over 400 feet into the clouds. Offering breathtaking precipitous drop-offs and sweeping valley panoramas, Pillar Rocks is one of the Western Ghats’ most awe-inspiring geological landmarks.',
@@ -206,7 +206,7 @@ export const NEARBY_ATTRACTIONS: Attraction[] = [
     id: 'coakers-walk',
     name: "Coaker's Walk",
     tagline: 'Panoramic Mountain Promenade Above Clouds',
-    distance: '8 mins from resort',
+    distance: '2.6 km from resort',
     image: '/assets/attractions/coakers walk.png',
     description:
       'A historic one-kilometer pedestrian promenade built along the edge of steep mountain slopes. Floating high above the cloud line, it treats visitors to sweeping panoramic views of emerald valleys, distant plains, and shifting misty horizons.',
@@ -216,7 +216,7 @@ export const NEARBY_ATTRACTIONS: Attraction[] = [
     id: 'guna-cave',
     name: 'Guna Cave',
     tagline: 'Mystical Caverns & Exposed Shola Roots',
-    distance: '14 mins from resort',
+    distance: '5.0 km from resort',
     image: '/assets/attractions/gunacave.png',
     description:
       'Originally known as Devil’s Kitchen, these enigmatic caverns are tucked between deep rock chasms and the sprawling exposed root systems of ancient Shola trees. Shrouded in mist and timeless hill lore, it is a mesmerizing natural wonder.',
@@ -244,3 +244,18 @@ export const DOLOMITES_SLIDES = [
     caption: 'Sunlit Timber Seating & Terrace — Kodai Mayura Inn',
   },
 ];
+
+export const RESORT_CONTACT = {
+  phone: '93857 93701',
+  phoneFormatted: '+91 93857 93701',
+  phoneTel: '+919385793701',
+  instagram: 'kodaimayurainn',
+  instagramHandle: '@kodaimayurainn',
+  instagramUrl: 'https://www.instagram.com/kodaimayurainn',
+  website: 'kodaimayurainn.com',
+  websiteUrl: 'https://kodaimayurainn.com',
+  location: 'Kodaikanal, Tamil Nadu',
+  address: 'Kodai Mayura Inn, Kodaikanal, Tamil Nadu 624101',
+  coordinates: '10.2446° N, 77.4917° E',
+};
+
