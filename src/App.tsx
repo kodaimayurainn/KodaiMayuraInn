@@ -101,6 +101,7 @@ export default function App() {
               muted
               loop
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             />
           </motion.div>

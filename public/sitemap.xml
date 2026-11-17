@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://kodaimayurainn.com/</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kodaimayurainn.com/assets/kodai/exterior.png</image:loc>
+      <image:title>Kodai Mayura Inn Exterior Architecture</image:title>
+      <image:caption>Kodai Mayura Inn - Luxury Hill Station Retreat in Kodaikanal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://kodaimayurainn.com/assets/kodai/2%20Bedroom%20with%20Hall.png</image:loc>
+      <image:title>2 Bedroom with Hall Suite</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kodaimayurainn.com/assets/kodai/3%20Bedroom%20with%20hall.png</image:loc>
+      <image:title>3 Bedroom with Hall Suite</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://kodaimayurainn.com/assets/kodai/single%20bedroom.jpeg</image:loc>
+      <image:title>Single Bedroom Suite</image:title>
+    </image:image>
+  </url>
+</urlset>
