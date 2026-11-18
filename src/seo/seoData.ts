@@ -322,4 +322,31 @@ export const PAGES_SEO: Record<string, PageSEO> = {
       ],
     },
   },
+  '/card/': {
+    path: '/card/',
+    title: 'Kodai Mayura Inn — Digital Business Card',
+    description:
+      'Contact Kodai Mayura Inn directly. Call, WhatsApp, follow us on Instagram, or book your stay on Airbnb. Boutique hillside accommodation in Kodaikanal, Tamil Nadu.',
+    canonicalUrl: `${SITE_URL}/card/`,
+    ogTitle: 'Kodai Mayura Inn — Book & Connect',
+    ogDescription:
+      'Call, message, or book your stay at Kodai Mayura Inn. Single, 2-Bedroom, and 3-Bedroom suites in Kodaikanal.',
+    ogImage: `${SITE_URL}/assets/kodai/exterior.png`,
+    ogImageAlt: 'Kodai Mayura Inn Boutique Hillside Stay',
+    h1: 'Kodai Mayura Inn — Contact & Book',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      '@id': `${SITE_URL}/card/#page`,
+      url: `${SITE_URL}/card/`,
+      name: 'Kodai Mayura Inn Digital Card',
+      description: 'QR digital business card for Kodai Mayura Inn with contact and booking links.',
+      mainEntity: {
+        '@type': 'Hotel',
+        name: 'Kodai Mayura Inn',
+        telephone: '+919385793701',
+        url: `${SITE_URL}/`,
+      },
+    },
+  },
 };

@@ -122,6 +122,14 @@ export const RoomsPage: React.FC = () => {
                       SPECIFICATIONS
                     </button>
                     <a
+                      href={room.airbnbUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#FF5A5F] text-white font-display text-xs uppercase tracking-wider hover:bg-[#E04E53] transition-colors cursor-pointer"
+                    >
+                      BOOK ON AIRBNB
+                    </a>
+                    <a
                       href={`tel:${RESORT_CONTACT.phoneTel}`}
                       className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#4A443B] text-white font-display text-xs uppercase tracking-wider hover:bg-[#38332C] transition-colors cursor-pointer"
                     >
@@ -194,7 +202,7 @@ export const RoomsPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="border-t border-[#DCD9D0] pt-6 flex items-center justify-between">
+              <div className="border-t border-[#DCD9D0] pt-6 flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <div className="font-courier text-xs text-[#828578]">Starting rate</div>
                   <div className="font-display text-2xl text-[#171614]">
@@ -203,12 +211,22 @@ export const RoomsPage: React.FC = () => {
                   </div>
                 </div>
 
-                <a
-                  href={`tel:${RESORT_CONTACT.phoneTel}`}
-                  className="px-6 py-2.5 bg-[#4A443B] text-white font-display text-xs uppercase tracking-wider hover:bg-[#38332C] transition-colors"
-                >
-                  CALL TO RESERVE
-                </a>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={selectedRoom.airbnbUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 bg-[#FF5A5F] text-white font-display text-xs uppercase tracking-wider hover:bg-[#E04E53] transition-colors"
+                  >
+                    BOOK ON AIRBNB
+                  </a>
+                  <a
+                    href={`tel:${RESORT_CONTACT.phoneTel}`}
+                    className="px-6 py-2.5 bg-[#4A443B] text-white font-display text-xs uppercase tracking-wider hover:bg-[#38332C] transition-colors"
+                  >
+                    CALL TO RESERVE
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>

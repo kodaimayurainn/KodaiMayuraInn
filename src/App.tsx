@@ -11,6 +11,7 @@ import { LocationPage } from './pages/LocationPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { GuidePage } from './pages/GuidePage';
 import { ContactPage } from './pages/ContactPage';
+import { QRContactPage } from './pages/QRContactPage';
 import { PAGES_SEO } from './seo/seoData';
 
 interface AppProps {
@@ -46,6 +47,8 @@ function PageRenderer({ onOpenInfoModal }: { onOpenInfoModal: (title: string, co
       return <GuidePage />;
     case '/contact/':
       return <ContactPage />;
+    case '/card/':
+      return <QRContactPage />;
     case '/':
     default:
       return <HomePage onOpenInfoModal={onOpenInfoModal} />;
@@ -54,6 +57,7 @@ function PageRenderer({ onOpenInfoModal }: { onOpenInfoModal: (title: string, co
 
 function AppContent({ initialPath }: AppProps) {
   const { currentPath } = useRouter();
+  const isQRCardPage = currentPath === '/card/';
   const [loading, setLoading] = useState(() => {
     // Disable loader during build prerender or if previously viewed in session
     if (initialPath || typeof window === 'undefined') return false;
@@ -105,7 +109,7 @@ function AppContent({ initialPath }: AppProps) {
   return (
     <div id="top" className="min-h-screen bg-[#F9F8F6] text-[#171614]">
       {/* Full-Screen Editorial Animation Loader matching Framer specification */}
-      {loading && (
+      {loading && !isQRCardPage && (
         <AnimationLoader
           brandName="KODAI MAYURA INN"
           duration={2.2}
@@ -115,16 +119,25 @@ function AppContent({ initialPath }: AppProps) {
         />
       )}
 
-      {/* Fixed Top Bar & Navigation Drawer */}
-      <HeaderAndMenu showHeaderLogo={scrolledPastHero || currentPath !== '/'} />
+      {/* QR Card Page: standalone — no header/footer/loader chrome */}
+      {isQRCardPage ? (
+        <main>
+          <PageRenderer onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
+        </main>
+      ) : (
+        <>
+          {/* Fixed Top Bar & Navigation Drawer */}
+          <HeaderAndMenu showHeaderLogo={scrolledPastHero || currentPath !== '/'} />
 
-      {/* Main Content */}
-      <main className="pt-[56px]">
-        <PageRenderer onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
-      </main>
+          {/* Main Content */}
+          <main className="pt-[56px]">
+            <PageRenderer onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
+          </main>
 
-      {/* Footer */}
-      <FooterSection onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
+          {/* Footer */}
+          <FooterSection onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
+        </>
+      )}
 
       {/* Info Modal for Footer / Brand Links */}
       {infoModal && (

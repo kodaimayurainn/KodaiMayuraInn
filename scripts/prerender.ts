@@ -105,7 +105,7 @@ async function prerender() {
     console.log(`✓ Generated ${path.relative(distDir, outPath)} (${(stats.size / 1024).toFixed(1)} KB)`);
   }
 
-  console.log('\nAll 7 static pages successfully prerendered!');
+  console.log('\nAll static pages successfully prerendered!');
 }
 
 prerender().catch((err) => {

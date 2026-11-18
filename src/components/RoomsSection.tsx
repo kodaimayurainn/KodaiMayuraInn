@@ -12,6 +12,7 @@ export interface RoomSuite {
   rateEur: number;
   description: string;
   amenities: string[];
+  airbnbUrl: string;
 }
 
 export const FEATURED_ROOMS: RoomSuite[] = [
@@ -33,6 +34,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
       'Artisanal Oak & Linen Furnishings',
       'High-Speed Wi-Fi',
     ],
+    airbnbUrl: 'https://www.airbnb.co.in/rooms/1821596177746656064?check_in=2026-11-27&check_out=2026-11-28&adults=1&s=67&unique_share_id=54ab2031-8bd3-4726-8e5f-e104021e9fa6',
   },
   {
     id: '2-bedroom-with-hall',
@@ -52,6 +54,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
       'Artisanal Oak & Linen Furnishings',
       'High-Speed Wi-Fi',
     ],
+    airbnbUrl: 'https://www.airbnb.co.in/rooms/1821606868802900736?check_in=2026-11-27&check_out=2026-11-28&guests=4&adults=4&s=67&unique_share_id=2e3e946a-00ea-4d7e-8ca6-c69c5a4193ca',
   },
   {
     id: '3-bedroom-with-hall',
@@ -71,6 +74,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
       'Private Scenic Balconies',
       'High-Speed Wi-Fi',
     ],
+    airbnbUrl: 'https://www.airbnb.co.in/rooms/1821609989943867973?check_in=2026-11-27&check_out=2026-11-28&guests=4&adults=6&s=67&unique_share_id=263f861f-8097-4608-b9c2-9633b7a133b7',
   },
 ];
 
@@ -214,7 +218,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={() => handleOpenDetails(room)}
@@ -222,6 +226,14 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     >
                       SPECIFICATIONS
                     </button>
+                    <a
+                      href={room.airbnbUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 bg-[#FF5A5F] text-white font-display text-xs uppercase tracking-wider hover:bg-[#E04E53] transition-colors cursor-pointer"
+                    >
+                      BOOK ON AIRBNB
+                    </a>
                   </div>
                 </div>
               </div>
@@ -321,7 +333,15 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={modalRoom.airbnbUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 bg-[#FF5A5F] text-white font-display text-sm uppercase tracking-wider hover:bg-[#E04E53] transition-colors cursor-pointer"
+                    >
+                      BOOK ON AIRBNB
+                    </a>
                     <button
                       type="button"
                       onClick={() => setModalRoom(null)}
