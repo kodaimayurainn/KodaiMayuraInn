@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { X } from 'lucide-react';
 import { MayuraInnLogo, PinIcon } from './MayuraInnIcons';
 import { Hotel, RESORT_CONTACT } from '../data/mayurainnData';
+import { Link } from '../router/Router';
 
 interface FooterProps {
   onOpenInfoModal: (title: string, content: string) => void;
@@ -86,52 +87,44 @@ export const FooterSection: React.FC<FooterProps> = ({
             </div>
             <ul className="space-y-2.5">
               <li>
-                <a
-                  href="#rooms-section"
+                <Link
+                  href="/rooms/"
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
                   SINGLE BEDROOM
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#rooms-section"
+                <Link
+                  href="/rooms/"
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
                   2 BEDROOM WITH HALL
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#rooms-section"
+                <Link
+                  href="/rooms/"
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
                   3 BEDROOM WITH HALL
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#resort-overview-section"
+                <Link
+                  href="/gallery/"
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
-                  RESORT OVERVIEW
-                </a>
+                  PHOTO GALLERY
+                </Link>
               </li>
               <li>
-                <a
-                  href="#attractions-section"
-                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
-                >
-                  NEARBY ATTRACTIONS
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#map-section"
+                <Link
+                  href="/location/"
                   className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
                   LOCATION & MAP
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -139,50 +132,32 @@ export const FooterSection: React.FC<FooterProps> = ({
           {/* Middle Column 2: Company Links */}
           <div className="md:col-span-4">
             <div className="font-courier text-xs uppercase tracking-widest text-white/50 mb-3">
-              ABOUT & CONTACT
+              ABOUT & GUIDES
             </div>
             <ul className="space-y-2.5">
               <li>
-                <button
-                  type="button"
-                  onClick={() =>
-                    onOpenInfoModal(
-                      'ABOUT KODAI MAYURA INN',
-                      'Kodai Mayura Inn is an exclusive boutique hillside resort in Kodaikanal. Rooted in warm minimalism, organic architecture, and tranquil natural beauty, our property offers an unhurried mountain sanctuary for restorative escapes.'
-                    )
-                  }
-                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
+                <Link
+                  href="/about/"
+                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
                   ABOUT US
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() =>
-                    onOpenInfoModal(
-                      'COMPANY INFORMATION',
-                      `Kodai Mayura Inn. Registered boutique luxury hospitality retreat in Kodaikanal, Tamil Nadu, India. Website: ${RESORT_CONTACT.website} · Instagram: ${RESORT_CONTACT.instagramHandle} · Contact: ${RESORT_CONTACT.phoneFormatted}`
-                    )
-                  }
-                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
+                <Link
+                  href="/kodaikanal-travel-guide/"
+                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
-                  COMPANY INFORMATION
-                </button>
+                  KODAIKANAL TRAVEL GUIDE
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() =>
-                    onOpenInfoModal(
-                      'CONTACT US & RESERVATIONS',
-                      `Contact Number: ${RESORT_CONTACT.phoneFormatted} · Website: ${RESORT_CONTACT.website} · Instagram: ${RESORT_CONTACT.instagramHandle} · Location: ${RESORT_CONTACT.address} · Email: info@kodaimayurainn.com · Available daily 08:00 – 22:00 IST.`
-                    )
-                  }
-                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
+                <Link
+                  href="/contact/"
+                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 transition-colors cursor-pointer text-left block"
                 >
-                  CONTACT US
-                </button>
+                  CONTACT & RESERVATIONS
+                </Link>
               </li>
               <li>
                 <button
@@ -190,7 +165,7 @@ export const FooterSection: React.FC<FooterProps> = ({
                   onClick={() =>
                     window.scrollTo({ top: 0, behavior: 'smooth' })
                   }
-                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer"
+                  className="font-display text-[17px] uppercase tracking-[0.04em] text-[#F9F8F6] hover:text-white/75 cursor-pointer text-left"
                 >
                   BACK TO TOP
                 </button>

@@ -106,9 +106,9 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
             <Sparkles className="w-3.5 h-3.5" />
             <span>CURATED SUITES & RESIDENCES</span>
           </div>
-          <h1 className="font-display text-[32px] md:text-[42px] leading-[1.1] uppercase tracking-[0.03em] text-[#171614] mb-6">
+          <h2 className="font-display text-[32px] md:text-[42px] leading-[1.1] uppercase tracking-[0.03em] text-[#171614] mb-6">
             ELEVATED LIVING, DESIGNED FOR QUIET LUXURY
-          </h1>
+          </h2>
           <p className="font-courier text-[14px] md:text-[15px] leading-[1.7] text-[#262421]">
             Our accommodations merge raw stone, warm timber, and soft natural linens to create
             an atmosphere of grounded tranquility. Each suite offers expansive private living
@@ -159,7 +159,9 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
               >
                 <img
                   src={room.image}
-                  alt={room.name}
+                  alt={`${room.name} at Kodai Mayura Inn`}
+                  width="1200"
+                  height="750"
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

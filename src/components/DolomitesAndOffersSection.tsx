@@ -59,7 +59,10 @@ export const DolomitesAndOffersSection: React.FC<
         <img
           key={currentAttraction.id}
           src={currentAttraction.image}
-          alt={currentAttraction.name}
+          alt={`${currentAttraction.name} - Kodaikanal attraction near Kodai Mayura Inn`}
+          width="1600"
+          height="900"
+          loading="lazy"
           referrerPolicy="no-referrer"
           className="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700"
         />

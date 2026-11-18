@@ -1,37 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { MayuraInnLogo } from './components/MayuraInnIcons';
 import { HeaderAndMenu } from './components/HeaderAndMenu';
-import { RoomsSection } from './components/RoomsSection';
-import { TestimonialsAndResortSection } from './components/TestimonialsAndResortSection';
-import { DolomitesAndOffersSection } from './components/DolomitesAndOffersSection';
-import { MapSection } from './components/MapSection';
 import { FooterSection } from './components/FooterAndModals';
 import { AnimationLoader } from './components/AnimationLoader';
+import { Router, useRouter, normalizePath } from './router/Router';
+import { HomePage } from './pages/HomePage';
+import { RoomsPage } from './pages/RoomsPage';
+import { AboutPage } from './pages/AboutPage';
+import { LocationPage } from './pages/LocationPage';
+import { GalleryPage } from './pages/GalleryPage';
+import { GuidePage } from './pages/GuidePage';
+import { ContactPage } from './pages/ContactPage';
+import { PAGES_SEO } from './seo/seoData';
 
-export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [scrolledPastHero, setScrolledPastHero] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
+interface AppProps {
+  initialPath?: string;
+}
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
+function PageRenderer({ onOpenInfoModal }: { onOpenInfoModal: (title: string, content: string) => void }) {
+  const { currentPath } = useRouter();
+
+  // Dynamic meta tags update on client navigation
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const seo = PAGES_SEO[currentPath] || PAGES_SEO['/'];
+    document.title = seo.title;
+
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) descMeta.setAttribute('content', seo.description);
+
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) canonicalLink.setAttribute('href', seo.canonicalUrl);
+  }, [currentPath]);
+
+  switch (currentPath) {
+    case '/rooms/':
+      return <RoomsPage />;
+    case '/about/':
+      return <AboutPage />;
+    case '/location/':
+      return <LocationPage />;
+    case '/gallery/':
+      return <GalleryPage />;
+    case '/kodaikanal-travel-guide/':
+      return <GuidePage />;
+    case '/contact/':
+      return <ContactPage />;
+    case '/':
+    default:
+      return <HomePage onOpenInfoModal={onOpenInfoModal} />;
+  }
+}
+
+function AppContent({ initialPath }: AppProps) {
+  const { currentPath } = useRouter();
+  const [loading, setLoading] = useState(() => {
+    // Disable loader during build prerender or if previously viewed in session
+    if (initialPath || typeof window === 'undefined') return false;
+    return !sessionStorage.getItem('kmi_loaded');
   });
 
-  const heroVideoY = useTransform(scrollYProgress, [0, 1], ['0%', '24%']);
-  const heroVideoScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
-  const heroLogoY = useTransform(scrollYProgress, [0, 1], ['0%', '35%']);
-  const heroLogoOpacity = useTransform(scrollYProgress, [0, 0.72], [1, 0]);
-  const heroLogoScale = useTransform(scrollYProgress, [0, 0.72], [1, 0.92]);
-  const heroOverlayOpacity = useTransform(scrollYProgress, [0, 0.8], [0.25, 0.6]);
-
-  const [infoModal, setInfoModal] = useState<{
-    title: string;
-    content: string;
-  } | null>(null);
-
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [infoModal, setInfoModal] = useState<{ title: string; content: string } | null>(null);
   const [cookieDialogOpen, setCookieDialogOpen] = useState(false);
   const [cookiePrefs, setCookiePrefs] = useState({
     essential: true,
@@ -40,10 +70,13 @@ export default function App() {
   });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     if (loading) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      sessionStorage.setItem('kmi_loaded', 'true');
     }
     return () => {
       document.body.style.overflow = '';
@@ -51,6 +84,8 @@ export default function App() {
   }, [loading]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const onScroll = () => {
       setScrolledPastHero(window.scrollY > 260);
     };
@@ -58,91 +93,38 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNavigateSection = (sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+  const handleSaveCookiePreferences = () => {
+    setCookieDialogOpen(false);
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('consent', 'update', {
+        analytics_storage: cookiePrefs.analytics ? 'granted' : 'denied',
+      });
     }
   };
 
   return (
     <div id="top" className="min-h-screen bg-[#F9F8F6] text-[#171614]">
       {/* Full-Screen Editorial Animation Loader matching Framer specification */}
-      <AnimationLoader
-        brandName="KODAI MAYURA INN"
-        duration={2.2}
-        background="#F9F8F6"
-        textColor="#171614"
-        onComplete={() => setLoading(false)}
-      />
+      {loading && (
+        <AnimationLoader
+          brandName="KODAI MAYURA INN"
+          duration={2.2}
+          background="#F9F8F6"
+          textColor="#171614"
+          onComplete={() => setLoading(false)}
+        />
+      )}
 
       {/* Fixed Top Bar & Navigation Drawer */}
-      <HeaderAndMenu
-        showHeaderLogo={scrolledPastHero}
-        onNavigateSection={handleNavigateSection}
-      />
+      <HeaderAndMenu showHeaderLogo={scrolledPastHero || currentPath !== '/'} />
 
       {/* Main Content */}
       <main className="pt-[56px]">
-        {/* Hero Video with Smooth Parallax */}
-        <section
-          ref={heroRef}
-          aria-label="Kodai Mayura Inn Hero"
-          className="relative w-full h-[calc(100vh-56px)] min-h-[540px] max-h-[880px] bg-[#2D2924] overflow-hidden flex items-center justify-center"
-        >
-          <motion.div
-            style={{ y: heroVideoY, scale: heroVideoScale }}
-            className="absolute inset-0 w-full h-full will-change-transform"
-          >
-            <video
-              src="/assets/kodai/hero.mp4"
-              poster="/assets/kodai/exterior.png"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-
-          {/* Dynamic dark gradient scrim */}
-          <motion.div
-            style={{ opacity: heroOverlayOpacity }}
-            className="absolute inset-0 bg-black pointer-events-none"
-          />
-
-          {/* Centered Large Kodai Mayura Inn Logo with Parallax & Fade */}
-          <motion.div
-            style={{ y: heroLogoY, opacity: heroLogoOpacity, scale: heroLogoScale }}
-            className="relative z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none will-change-transform"
-          >
-            <MayuraInnLogo
-              className="w-[260px] sm:w-[330px] md:w-[370px] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
-              variant="white"
-            />
-          </motion.div>
-        </section>
-
-        {/* Curated Rooms & Suites Section */}
-        <RoomsSection />
-
-        {/* Guest Testimonials & Overall Resort Showcase */}
-        <TestimonialsAndResortSection />
-
-        {/* Nearby Attractions Section */}
-        <DolomitesAndOffersSection
-          onOpenInfoModal={(title, content) => setInfoModal({ title, content })}
-        />
-
-        {/* Resort Location & Map Section */}
-        <MapSection />
+        <PageRenderer onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
       </main>
 
       {/* Footer */}
-      <FooterSection
-        onOpenInfoModal={(title, content) => setInfoModal({ title, content })}
-      />
+      <FooterSection onOpenInfoModal={(title, content) => setInfoModal({ title, content })} />
 
       {/* Info Modal for Footer / Brand Links */}
       {infoModal && (
@@ -182,7 +164,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Cookie Preferences Modal */}
+      {/* Cookie Preferences Modal with Consent Mode */}
       {cookieDialogOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60"
@@ -226,7 +208,7 @@ export default function App() {
             <div className="mt-6 flex justify-end gap-3">
               <button
                 type="button"
-                onClick={() => setCookieDialogOpen(false)}
+                onClick={handleSaveCookiePreferences}
                 className="px-5 py-2 bg-[#828578] hover:bg-[#6E7165] text-white font-display text-base uppercase tracking-wider cursor-pointer"
               >
                 SAVE PREFERENCES
@@ -236,5 +218,13 @@ export default function App() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function App({ initialPath }: AppProps) {
+  return (
+    <Router initialPath={initialPath}>
+      <AppContent initialPath={initialPath} />
+    </Router>
   );
 }

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kodai Mayura Inn — Boutique Hillside Resort Kodaikanal</title>
-    <meta name="description" content="Elevated escapes in the misty hills of Kodaikanal. Discover Kodai Mayura Inn's collection of boutique, design-led luxury suites and residences." />
+    <title>Kodai Mayura Inn — Boutique Hillside Retreat in Kodaikanal</title>
+    <meta name="description" content="Experience unhurried quiet luxury at Kodai Mayura Inn, Kodaikanal. Featuring 1, 2, and 3-bedroom family-friendly suites with panoramic mountain verandas." />
     <link rel="canonical" href="https://kodaimayurainn.com/" />
 
     <!-- Search Engine Indexing & Crawling -->
@@ -16,8 +16,8 @@
 
     <!-- OpenGraph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:site_name" content="Kodai Mayura Inn" />
-    <meta property="og:title" content="Kodai Mayura Inn — Boutique Hillside Resort Kodaikanal" />
-    <meta property="og:description" content="Elevated escapes in the misty hills of Kodaikanal. Discover Kodai Mayura Inn's collection of boutique, design-led luxury suites and residences." />
+    <meta property="og:title" content="Kodai Mayura Inn — Boutique Hillside Retreat in Kodaikanal" />
+    <meta property="og:description" content="Experience unhurried quiet luxury at Kodai Mayura Inn, Kodaikanal. Featuring 1, 2, and 3-bedroom family-friendly suites with panoramic mountain verandas." />
     <meta property="og:url" content="https://kodaimayurainn.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://kodaimayurainn.com/assets/kodai/exterior.png" />
@@ -26,44 +26,55 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kodai Mayura Inn — Boutique Hillside Resort Kodaikanal" />
-    <meta name="twitter:description" content="Elevated escapes in the misty hills of Kodaikanal. Discover Kodai Mayura Inn's collection of boutique, design-led luxury suites and residences." />
+    <meta name="twitter:title" content="Kodai Mayura Inn — Boutique Hillside Retreat in Kodaikanal" />
+    <meta name="twitter:description" content="Experience unhurried quiet luxury at Kodai Mayura Inn, Kodaikanal. Featuring 1, 2, and 3-bedroom family-friendly suites with panoramic mountain verandas." />
     <meta name="twitter:image" content="https://kodaimayurainn.com/assets/kodai/exterior.png" />
 
     <!-- Schema.org Hotel Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Hotel",
-      "name": "Kodai Mayura Inn",
-      "alternateName": "Mayura Inn Kodaikanal",
-      "description": "Boutique hillside retreat in Kodaikanal featuring luxury family-friendly suites, private scenic balconies, and panoramic mountain vistas.",
-      "url": "https://kodaimayurainn.com/",
-      "image": "https://kodaimayurainn.com/assets/kodai/exterior.png",
-      "telephone": "+919385793701",
-      "priceRange": "₹3,000 - ₹9,000",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Kodai Mayura Inn",
-        "addressLocality": "Kodaikanal",
-        "addressRegion": "Tamil Nadu",
-        "postalCode": "624101",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 10.2446242,
-        "longitude": 77.49171
-      },
-      "hasMap": "https://www.google.com/maps/search/?api=1&query=10.2446242,77.49171",
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "High-Speed Wi-Fi", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Private Balcony with Mountain View", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Family Friendly", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true }
-      ],
-      "checkinTime": "12:00",
-      "checkoutTime": "10:00"
+      "@graph": [
+        {
+          "@type": "Hotel",
+          "@id": "https://kodaimayurainn.com/#hotel",
+          "name": "Kodai Mayura Inn",
+          "description": "Boutique hillside retreat in Kodaikanal featuring luxury family-friendly suites, private scenic balconies, and panoramic mountain vistas.",
+          "url": "https://kodaimayurainn.com/",
+          "image": "https://kodaimayurainn.com/assets/kodai/exterior.png",
+          "telephone": "+919385793701",
+          "priceRange": "₹3,000 - ₹9,000",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kodai Mayura Inn, Near Lake & Forest View",
+            "addressLocality": "Kodaikanal",
+            "addressRegion": "Tamil Nadu",
+            "postalCode": "624101",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 10.2446242,
+            "longitude": 77.49171
+          },
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=10.2446242,77.49171",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "High-Speed Wi-Fi", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Private Balcony with Mountain View", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Family Friendly Living Halls", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true }
+          ],
+          "checkinTime": "12:00",
+          "checkoutTime": "10:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://kodaimayurainn.com/#website",
+          "url": "https://kodaimayurainn.com/",
+          "name": "Kodai Mayura Inn",
+          "publisher": { "@id": "https://kodaimayurainn.com/#hotel" }
+        }
+      ]
     }
     </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -72,13 +83,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500&display=swap" rel="stylesheet" />
 
-    <!-- Google Tag Manager / Analytics -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KNQF762Q"></script>
+    <!-- Google Consent Mode v2 Default Configuration -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
       gtag('js', new Date());
     </script>
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KNQF762Q"></script>
   </head>
   <body>
     <div id="root"></div>
