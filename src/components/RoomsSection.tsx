@@ -34,7 +34,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
       'Artisanal Oak & Linen Furnishings',
       'High-Speed Wi-Fi',
     ],
-    airbnbUrl: 'https://www.airbnb.co.in/rooms/1821596177746656064?check_in=2026-11-27&check_out=2026-11-28&adults=1&s=67&unique_share_id=54ab2031-8bd3-4726-8e5f-e104021e9fa6',
+    airbnbUrl: 'https://www.airbnb.co.in/rooms/1822570471827857381',
   },
   {
     id: '2-bedroom-with-hall',
@@ -54,7 +54,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
       'Artisanal Oak & Linen Furnishings',
       'High-Speed Wi-Fi',
     ],
-    airbnbUrl: 'https://www.airbnb.co.in/rooms/1821606868802900736?check_in=2026-11-27&check_out=2026-11-28&guests=4&adults=4&s=67&unique_share_id=2e3e946a-00ea-4d7e-8ca6-c69c5a4193ca',
+    airbnbUrl: 'https://www.airbnb.co.in/rooms/1822571747279286543',
   },
   {
     id: '3-bedroom-with-hall',
@@ -74,7 +74,7 @@ export const FEATURED_ROOMS: RoomSuite[] = [
       'Private Scenic Balconies',
       'High-Speed Wi-Fi',
     ],
-    airbnbUrl: 'https://www.airbnb.co.in/rooms/1821609989943867973?check_in=2026-11-27&check_out=2026-11-28&guests=4&adults=6&s=67&unique_share_id=263f861f-8097-4608-b9c2-9633b7a133b7',
+    airbnbUrl: 'https://www.airbnb.co.in/rooms/1822572817290726929',
   },
 ];
 
